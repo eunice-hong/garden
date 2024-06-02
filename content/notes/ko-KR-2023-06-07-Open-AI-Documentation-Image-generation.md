@@ -1,13 +1,9 @@
 ---
 title: "이미지 생성: Open AI 문서 한국어로 읽기"
 date: 2023-06-07 01:39:00 +0900
-image: /assets/images/eunice-hong-opengraph.jpg
-headerImage: false
 tags:
   - open-ai
   - 🌿
-category: book
-author: eunice-hong
 description: Open AI 문서 이미지 생성(Image generation)을 한국어로 읽어봅니다. 오역, 의역이 있을 수 있습니다.
 languages: [ "ko" ]
 ---

@@ -4,8 +4,6 @@ date: 2023-08-13 23:45:00 +0900
 image: /images/2023-Mid-Year-Rewind/Header.png
 headerImage: true
 tags: [ "personal", "🍎" ]
-category: review
-author: eunice-hong
 description: 2023년도 상반기, 정확히는 봄/여름에 있었던 일들을 정리합니다.
 languages: [ "ko" ]
 ---

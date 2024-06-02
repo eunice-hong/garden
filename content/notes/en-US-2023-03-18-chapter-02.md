@@ -1,13 +1,8 @@
 ---
 title: CHAPTER 2 Functional thinking in action
 date:   2023-03-18 20:03:00 +0900
-image: /assets/images/eunice-hong-opengraph.jpg
-headerImage: false
 tags: ["grokking-simplicity", "🌿"]
-category: book
-author: eunice-hong
 description: Markdown summary with different options
-languages: ["ko", "en"]
 ---
 
 In Chapter 2, we’ll learn how to apply functional thinking in the real world through Toni’s Pizzeria.

@@ -1,13 +1,8 @@
 ---
 title: "이더리움과 관련 용어 소개: Solidity 10일 챌린지 - 03일차"
 date:   2023-06-12 23:01:00 +0900
-image: /assets/images/eunice-hong-opengraph.jpg
-headerImage: false
 tags: ["10-days-of-solidity", "🌿"]
-category: book
-author: eunice-hong
 description: 이더리움과 관련 용어 소개
-languages: ["ko"]
 ---
 
 # 3일차: 이더리움과 그 용어 소개

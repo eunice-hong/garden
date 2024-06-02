@@ -1,13 +1,8 @@
 ---
 title: CHAPTER 3 액션과 계산, 데이터의 차이를 알기
 date:   2023-03-05 14:52:00 +0900
-image: /assets/images/eunice-hong-opengraph.jpg
-headerImage: false
 tags: ["grokking-simplicity", "🌿"]
-category: book
-author: eunice-hong
 description: Markdown summary with different options
-languages: ["ko"]
 ---
 
 ## 1. 데이터
