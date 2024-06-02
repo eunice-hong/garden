@@ -3,8 +3,7 @@ title: CHAPTER 1 쏙쏙 들어오는 함수형 코딩에 오신 것을 환영합
 date:   2023-03-04 00:17:47 +0900
 image: /assets/images/eunice-hong-opengraph.jpg
 headerImage: false
-tags:
-- grokking-simplicity
+tags: ["grokking-simplicity", "🌿"]
 category: book
 author: eunice-hong
 description: Markdown summary with different options

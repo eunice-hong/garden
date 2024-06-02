@@ -5,7 +5,7 @@ image: /assets/images/eunice-hong-opengraph.jpg
 headerImage: false
 tags:
 - open-ai
-
+- 🌿
 category: book
 author: eunice-hong
 description: Open AI 문서 미세 조정(Fine-tuning)을 한국어로 읽어봅니다. 오역, 의역이 있을 수 있습니다.

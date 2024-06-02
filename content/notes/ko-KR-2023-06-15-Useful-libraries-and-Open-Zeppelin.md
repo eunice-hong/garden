@@ -3,8 +3,7 @@ title: "관련 라이브러리와 제플린 사용하기: Solidity 10일 챌린�
 date:   2023-06-15 23:01:00 +0900
 image: /assets/images/eunice-hong-opengraph.jpg
 headerImage: false
-tags:
-- 10-days-of-solidity
+tags: ["10-days-of-solidity", "🌿"]
 category: book
 author: eunice-hong
 description: 보안과 오버플로우 오류를 방지를 위해 사용 할 수 있는 스마트 계약 라이브러리에 대해 알아봅니다.

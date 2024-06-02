@@ -3,8 +3,7 @@ title: CHAPTER 1 Welcome to Grokking Simplicity
 date:   2023-03-04 00:17:47 +0900
 image: /assets/images/eunice-hong-opengraph.jpg
 headerImage: false
-tags:
-- grokking-simplicity
+tags: ["grokking-simplicity", "🌿"]
 category: book
 author: eunice-hong
 description: Markdown summary with different options

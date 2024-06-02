@@ -3,8 +3,7 @@ title: "ERC-721 컨트랙 직접 생성하기: Solidity 10일 챌린지 - 07일�
 date:   2023-06-16 23:01:00 +0900
 image: /assets/images/eunice-hong-opengraph.jpg
 headerImage: false
-tags:
-- 10-days-of-solidity
+tags: ["10-days-of-solidity", "🌿"]
 category: book
 author: eunice-hong
 description: ERC-721 계약을 작성하는 방법과 NFT의 중요성에 대해 알아봅시다.

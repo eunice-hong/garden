@@ -1,14 +1,13 @@
 ---
 title: "Solidity 모범 사례: Solidity 10일 챌린지 - 10일차"
-date:   2023-06-19 23:01:00 +0900
+date: 2023-06-19 23:01:00 +0900
 image: /assets/images/eunice-hong-opengraph.jpg
 headerImage: false
-tags:
-- 10-days-of-solidity
+tags: ["10-days-of-solidity", "🌿"]
 category: book
 author: eunice-hong
 description: Solidity 모범 사례(Best Practices) 모음
-languages: ["ko"]
+languages: [ "ko" ]
 ---
 
 부실하게 설계되고 작성된 코드는 장기적으로 기술 부채가 되어 당신을 괴롭힐 것 입니다. 

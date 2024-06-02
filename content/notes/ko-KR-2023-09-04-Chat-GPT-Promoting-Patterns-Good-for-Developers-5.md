@@ -1,14 +1,13 @@
 ---
-title: "개발자가 활용하기 좋은 Chat GPT 프롬프팅 패턴 5가지" 
-date:   2023-09-04 01:02:00 +0900
+title: "개발자가 활용하기 좋은 Chat GPT 프롬프팅 패턴 5가지"
+date: 2023-09-04 01:02:00 +0900
 image: /assets/images/eunice-hong-opengraph.jpg
 headerImage: false
-tags:
-- prompting
+tags: [ "prompting", "🌿" ]
 category: summary
 author: eunice-hong
 description: "개발자가 활용하기 좋은 Chat GPT 프롬프팅 패턴 5가지"
-languages: ["ko"]
+languages: [ "ko" ]
 ---
 
 

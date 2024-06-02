@@ -3,8 +3,7 @@ title: "Remix를 사용하여 '헬로 월드' 컨트랙 작성하기: Solidity 1
 date:   2023-06-13 23:01:00 +0900
 image: /assets/images/eunice-hong-opengraph.jpg
 headerImage: false
-tags:
-- 10-days-of-solidity
+tags: ["10-days-of-solidity", "🌿"]
 category: book
 author: eunice-hong
 description: 리믹스를 이용한 헬로 월드 계약 작성
