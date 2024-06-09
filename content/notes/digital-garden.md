@@ -6,19 +6,18 @@ draft: false
 tags: [ "🌿" ]
 ---
 
-# What is Digital Garden?
+# What is a Digital Garden?
 
-'Digital garden' is a metaphor for a blog, which structures articles nonlinear way.
-Each articles in a _garden_ are defined as a `seedling`, a `budding`, or a `evergreen.`
+A 'Digital Garden' is a metaphor for a blog that structures articles in a non-linear way. 
+Each article in a _garden_ is defined as a `seedling`, a `budding`, or an `evergreen`.
 
 Usually,
 
-- `seedlings` for very rough and early ideas
-- `buddings` for work I've cleaned up and clarified
-- `evergreens` for work that is reasonably complete (though I still tend these over
-  time). [^garden-history]
+- `🌱 seedlings` are very rough and early ideas
+- `🌿 buddings` are work that I've cleaned up and clarified
+- `🌲 evergreens` are work that is reasonably complete (though I still tend these over time).[^garden-history]
 
-Of course, details depends on its gardener.
+Of course, the details depend on the gardener.
 
 # Difference between Digital Gardening and Blogging
 
@@ -35,47 +34,41 @@ Here's a comparison table between Digital Gardens and Blogging (generated from C
 
 # Why Digital Garden?
 
-I'd like to call the general blogging as a _retail_, which exists to seek profit.
-Digital garden
+I'd like to compare general blogging to retail, which exists to seek profit. Digital gardens, on the other hand, offer a different approach.
 
-## Escape from obsession with the fresh idea.
+## Escape from the Obsession with Fresh Ideas
 
-Timestamps of articles in home feels like an expiration date.
-It represents how much the post is fresh.
-At the same time, it's a timer to lazy managers like me which shows how long has this blog been
+Timestamps on articles in a blog can feel like expiration dates. 
+They indicate how fresh a post is and, 
+at the same time, act as a reminder for lazy managers like me of how long the blog has been
 abandoned.
 
-On the other hand, the gardeners pave the roads for guests in Hyperlink driven.
-They build their own doors, and connect the writings by writing as their way.
-The paths can herd the visitors to a flower bed, an arboretum,
-or a storage abundant with the fruits without encountering smells from fertilizer.
+On the other hand, gardeners pave the roads for guests using hyperlinks. 
+They build their own doors and connect writings in their own way. These paths can guide visitors to a flower bed, an arboretum,
+or a storage room abundant with fruits, without encountering the unpleasant smells of fertilizer.
 
-Retails must discard the products that has passed the date, of course,
-no matter what it's not that differ from the next one which has born a few days later.  
-Roots of seeds, trees and a sweetly scented flowers are always welcomed to grow,
-as they are the family member of the garden.
+Retailers must discard products that have passed their expiration dates, even if they are not
+significantly different from those produced a few days later. However, the roots of seeds, trees,
+and sweetly scented flowers are always welcomed to grow, as they are members of the garden family.
 
-## Escape from obsession with perfectionism.
+## Escape from the Obsession with Perfectionism
 
-To consider a writing is in a steps of plants growth free us from the [_perfectionism_](perfectionism.md).
+Considering writing as part of a plant's growth cycle frees us from [_perfectionism_](perfectionism.md).
 
-Running a blog, it's hard to ignore the rules of search engine, 
-which impose to categorize the articles, care about legibility to the robots, 
-and stay tuned for the trends to drift the contents on their "sacred algorithm."
-The dogmatic mediators grade web pages according to their law, and treat the rebels as a loser.
-It's understandable that random customers judging the websites by the grades 
-because they are just a tourist just got off from the cruises called Google, Bing, or etc.
+Running a blog, it's hard to ignore the rules of search engines, which impose categorizing articles,
+ensuring legibility for robots, and staying tuned to trends to align with their "sacred algorithm."
+These dogmatic mediators grade web pages according to their laws and treat rebels as losers. It's
+understandable that random customers judge websites by these grades because they are just tourists
+who have just gotten off cruises called Google, Bing, etc.
 
-Nobody blames on a tiny flower blooming inside the greenwoods.
-Even though the smell of manure reeks aloud, 
-it's hard to imagine visitors boo on the garden as failure.
-The majority of the topic they care must be like "What kind of seeds have been planted?",
-"How long they've been here", or "Can the seeds bear some eatable fruits?".
+Nobody blames a tiny flower blooming inside the greenwoods. Even though the smell of manure may
+reek, it's hard to imagine visitors booing the garden as a failure. The majority of their concerns
+are likely, "What kind of seeds have been planted?", "How long have they been here?", or "Can the
+seeds bear edible fruits?".
 
-The gift to manage evergreen blogs not allowed to everybody.
-Fortunately, planting an apple seed left from a dessert time is absolutely fine 
-as long as we have a space for it.
-In other words, to define ourselves as a `gardener` liberate us from the system of digital capitalism.
+The gift of managing evergreen blogs is not granted to everyone. 
+Fortunately, planting an apple seed left from dessert time is absolutely fine as long as we have space for it.
+In other words, defining ourselves as `gardeners` liberates us from the system of digital capitalism.
 
 
 <!-- ## Expose the flow of ideas.
