@@ -3,6 +3,8 @@ title: "Eunice Hong"
 description: "Hi, I'm Eunice Hong. I'm a software engineer and writer. I write about programming, software engineering, and personal growth."
 ---
 
+[//]: # ([🇰🇷한국어]&#40;./about/홍은진.md&#41; | [🇯🇵 日本語]&#40;./about/ユニス・ホン.md&#41; | [🇲🇳 Монгол]&#40;./about/Эүнис-Хонг.md&#41; | [🔠 English]&#40;./about.md&#41;)
+
 Hi, I'm Eunice Hong. I'm a software engineer and writer. I write about programming, software
 engineering, and personal growth.
 
