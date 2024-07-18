@@ -87,6 +87,7 @@ In other words, defining ourselves as `gardeners` liberates us from the system o
 - https://maggieappleton.com/design-engineers
 - https://github.com/swyxio/digital-garden-tos
 - https://we-b.site/
+- https://maggieappleton.com/nontechnical-gardening
  --> 
 
 [^garden-history]: https://maggieappleton.com/garden-history#3-imperfection-&-learning-in-public
