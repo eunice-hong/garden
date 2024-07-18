@@ -136,6 +136,6 @@ function update(string memory newmesssage) public {
 
 헬로 월드! 이제 `update` 함수를 사용하여 "Hello Eunice"를 전달해 보겠습니다. 이제 `message`의 최신 값을 가져오면 다음과 같이 표시됩니다:
 
-![](images/Writing-Hello-World-Contract-using-remix/Remix-Screenshot-Hello-Eunice.png)
+![](../../../images/Writing-Hello-World-Contract-using-remix/Remix-Screenshot-Hello-Eunice.png)
 
 🎉 축하합니다. Solidity에서 첫 번째 스마트 계약을 작성하고 했어요! 해피 코딩!
