@@ -4,7 +4,7 @@ description: "Eunice's Garden is a digital garden built with Quartz, a static si
 date: 2024-06-02
 ---
 
-Eunice's Garden is a [`digital garden`](./notes/digital-garden.md) built with [Quartz](https://quartz.jzhao.xyz/),
+Eunice's Garden is a [`digital garden`](digital-garden.md) built with [Quartz](https://quartz.jzhao.xyz/),
 a static site generator for digital gardens.
 This garden is a place for me to share my thoughts, ideas, and projects.
 I hope you find something interesting here!

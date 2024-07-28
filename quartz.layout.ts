@@ -28,11 +28,11 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Darkmode(),
     Component.DesktopOnly(
       Component.RecentNotes({
-        title: "Recent Writing",
+        title: "Recent Posts",
         limit: 4,
         filter: (f) =>
-          f.slug!.startsWith("notes/") && f.slug! !== "notes/index" && !f.frontmatter?.noindex,
-        linkToMore: "notes/" as SimpleSlug,
+          f.slug!.startsWith("Notes/") && f.slug! !== "Notes/index" && !f.frontmatter?.noindex,
+        linkToMore: "Notes/" as SimpleSlug,
       }),),
   ],
   right: [
@@ -52,7 +52,7 @@ export const defaultListPageLayout: PageLayout = {
     Component.Darkmode(),
     Component.DesktopOnly(
       Component.RecentNotes({
-        title: "Recent Notes",
+        title: "Recent Thoughts",
         limit: 2,
         filter: (f) => f.slug!.startsWith("Monologue/"),
         linkToMore: "Monologue/" as SimpleSlug,

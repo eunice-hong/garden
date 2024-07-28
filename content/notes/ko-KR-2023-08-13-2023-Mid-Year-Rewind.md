@@ -86,7 +86,7 @@ GitHub Actions로 배포도 자동화했다.
 
 문제의 본질은 내가 익숙하지 않은 것을 내 글처럼 쓰려했다는 것이다.
 
-![blog-posts-ko](images/2023-review/Blog-Posts-ko.png)
+![blog-posts-ko](Notes/images/2023-review/Blog-Posts-ko.png)
 
 ### 어떻게
 
@@ -181,7 +181,7 @@ PT라면 배가 부를 정도로 많이 받아봐서, 운동에는 자신이 있
 
 ### 누가
 
-![records-of-pilates-class](images/2023-review/Records-of-Pilates-Class.png)
+![records-of-pilates-class](Notes/images/2023-review/Records-of-Pilates-Class.png)
 
 필라테스 자체도 나에게 도움이 되었지만, 내 몸이 건강을 회복하게 된 건 아무래도 좋은 선생님 덕분이다.
 평일에 업무 시간 내내 신경을 곤두세우고 있는 탓에 온 몸이 긴장 상태다.
@@ -267,7 +267,7 @@ PT라면 배가 부를 정도로 많이 받아봐서, 운동에는 자신이 있
 극 T 인간이라 사실을 발설할 줄 밖에 모르기에, 내가 적은 댓글은 스스로 보기에도 피상적이라고 느껴졌다.
 
 
-![last_memoir_message](images/2023-review/My-Last-Challenge-Post-of-Memoir.png)
+![last_memoir_message](Notes/images/2023-review/My-Last-Challenge-Post-of-Memoir.png)
 
 
 그래도, 12 주차 중 11 번 참여했다! 
@@ -340,7 +340,7 @@ PT라면 배가 부를 정도로 많이 받아봐서, 운동에는 자신이 있
 집에 모시고 오자마자 새 친구들에게 원산지에서 많이 사용할 것 같은 이름을 붙여주었다.
 친구들이 어디에서 왔는지 잘 기억하기 위함이었다.
 
-![new-plants-for-home](images/2023-review/New-Plants-for-Home.png)
+![new-plants-for-home](Notes/images/2023-review/New-Plants-for-Home.png)
 
 몬스테라는 `곤잘레스`, 스킨답서스는 `오스카`로 지었다.
 왠지 남미 포르투갈어권에서 많이 쓰이는 이름 같아서 멕시코 출신 몬스테라는 특별한 조사없이 곤잘레스 낙점.

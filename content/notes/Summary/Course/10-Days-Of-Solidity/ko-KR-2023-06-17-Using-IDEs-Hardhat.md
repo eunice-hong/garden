@@ -31,7 +31,7 @@ Solidity 스마트 계약을 처음부터 구축하는 직접적인 경험을 �
 [알케미][alchemy], 에서 무료 계정을 얻고 아래의 지시사항을 따르세요.
 
 무료 계정에 가입하고 앱을 만들 수 있습니다.
-![알케미 가입 시, Chain은 Etherium을 선택한다.](../../../images/Using-IDEs-Hardhat/alchemy_chain_selection.png)
+![알케미 가입 시, Chain은 Etherium을 선택한다.](Notes/images/Using-IDEs-Hardhat/alchemy_chain_selection.png)
 
 이 때,알케미 가입 시, Chain은 Etherium을 선택하세요.
 
@@ -77,13 +77,13 @@ OpenSea와 같은 웹 사이트에 로그인하는 데도 사용할 수도 있�
 MetaMask의 확장을 열고 네트워크를 Sepolia로 전환하기만 하면 됩니다.
 
 
-![MetaMask의 확장을 열고 네트워크를 Sepolia로 전환한다](../../../images/Using-IDEs-Hardhat/select_network_sepolia_on_meta_mask.png)
+![MetaMask의 확장을 열고 네트워크를 Sepolia로 전환한다](Notes/images/Using-IDEs-Hardhat/select_network_sepolia_on_meta_mask.png)
  
 위의 이미지와 같습니다. 
 
 만약 세폴리아 네트워크가 보이지 않는 경우, 테스트 네트워크를 켜보세요.
 
-![테스트 네트워크를 켜기](../../../images/Using-IDEs-Hardhat/show_test_network_on_meta_mask.png)
+![테스트 네트워크를 켜기](Notes/images/Using-IDEs-Hardhat/show_test_network_on_meta_mask.png)
 1. Settings으로 이동
 2. Advanced 열기
 3. 아래로 스크롤하여 테스트 네트워크 표시(Show test networks) 켜기
@@ -99,7 +99,7 @@ MetaMask의 확장을 열고 네트워크를 Sepolia로 전환하기만 하면 �
 
 위 링크에서 가짜 ETH 얻기 성공 시 보이는 화면입니다. 
 
-![가짜 ETH 얻기 성공 시 보이는 화면](../../../images/Using-IDEs-Hardhat/get_fake_eth_from_sepoliafaucet.png)
+![가짜 ETH 얻기 성공 시 보이는 화면](Notes/images/Using-IDEs-Hardhat/get_fake_eth_from_sepoliafaucet.png)
 
 ### 🦊개인 메타마스크 키 가져오기
 
