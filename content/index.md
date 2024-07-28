@@ -15,17 +15,44 @@ I hope you find something interesting here!
 > _정원에는 다양한 언어로 이야기가 자라고 있습니다. Хэрэв би таны ойлгохгүй хэлээр ярьж байгаа бол_
 > _Just use translation tools like Google Translate or DeepL._
 
-## 🌱 Get Started
+# 🌱 Get Started
 
-To get started, you can:
+To get started, you can explore the following sections:
 
-#### [✏️ Notes](/notes): Loose, unopinionated notes on things I don’t entirely understand yet.
+## [🙋🏻‍♀ About](/about)
 
-#### [🙋🏻‍♀ About](/about): Learn more about me
+Learn more about me
 
-#### [🆕 Now](/now): A sporadically updated log of what I'm reading, exploring, and thinking about
+## [🆕 Now](/now)
 
-<!---
+A sporadically updated log of what I'm reading, exploring, and thinking about
+
+
+# 🎵 Blog: My blog posts
+
+## [📝 Summary](/notes/Summary): A collection of my notes
+
+1. [🧑‍🏫Courses](/notes/Summary/Course): A collection of courses I've taken. 
+2. [📑 Documentation](/notes/Summary/Documentation): A collection of documentation I've written.
+3. [📚Reading](/notes/Summary/Reading): Books I’ve read and books I like the idea of having read.
+
+<!--
+## 🌿 Projects
+
+#### [🌿 Projects](/projects): A collection of my projects
+
+#### [🌱 Digital Garden](/notes/digital-garden): A collection of notes on digital gardening
+
+#### [🌐 Networked Thought](/notes/networked-thought): A collection of notes on networked thought
+
+#### [📧 Contact](/contact): Feel free to reach out to me at []() or follow my work on [GitHub/eunice-hong]() 
+
+#### [📅 2024-06-02](/notes/ko-KR-2024-06-02-2024-06-02-Hello-World): Hello, World!
+
+#### [📚 Books](/library): Books I’ve read and books I like the idea of having read.
+
+#### [📝 Blog](/blog): My blog posts
+
 TODO: Add more content
 - [Opinionated, longform narrative writing with an agenda](/essays)
 - [Books I’ve read and books I like the idea of having read.](/library)
