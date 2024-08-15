@@ -35,6 +35,7 @@ A sporadically updated log of what I'm reading, exploring, and thinking about
 1. [🧑‍🏫Courses](/notes/Summary/Course): A collection of courses I've taken. 
 2. [📑 Documentation](/notes/Summary/Documentation): A collection of documentation I've written.
 3. [📚Reading](/notes/Summary/Reading): Books I’ve read and books I like the idea of having read.
+    Recently, I'm working on summarizing the book "_[[Notes/Summary/Reading/코틀린-코루틴의-정석/index|코틀린 코루틴의 정석]]_"
 
 <!--
 ## 🌿 Projects

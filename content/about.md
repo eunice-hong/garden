@@ -30,7 +30,7 @@ I'm committed to continuous learning and staying ahead in the ever-evolving tech
 
 #### Personality
 
-Outside of work, I enjoy exploring new technologies, hiking in the beautiful Korean mountains, and
+Outside of work, I enjoy exploring new technologies, doing [Pilates](https://pilates.eunice-hong.com) and 
 experimenting with Korean cuisine. These hobbies keep me refreshed and bring a unique perspective to
 my development work.
 
