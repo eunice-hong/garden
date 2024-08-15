@@ -1,6 +1,6 @@
 ---
 title: CHAPTER 1 Welcome to Grokking Simplicity
-date:   2023-03-04 00:17:47 +0900
+date: 2023-03-04 00:17:47 +0900
 tags: ["grokking-simplicity", "🌿"]
 description: Markdown summary with different options
 ---

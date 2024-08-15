@@ -1,6 +1,6 @@
 ---
 title: CHAPTER 2 현실에서의 함수형 사고
-date:   2023-03-04 23:15:00 +0900
+date: 2023-03-04 23:15:00 +0900
 tags: ["grokking-simplicity", "🌿"]
 description: Markdown summary with different options
 ---

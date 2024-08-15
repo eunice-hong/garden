@@ -1,6 +1,6 @@
 ---
 title: CHAPTER 3 액션과 계산, 데이터의 차이를 알기
-date:   2023-03-05 14:52:00 +0900
+date: 2023-03-05 14:52:00 +0900
 tags: ["grokking-simplicity", "🌿"]
 description: Markdown summary with different options
 ---

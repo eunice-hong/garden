@@ -1,6 +1,6 @@
 ---
 title: CHAPTER 1 쏙쏙 들어오는 함수형 코딩에 오신 것을 환영합니다.
-date:   2023-03-04 00:17:47 +0900
+date: 2023-03-04 00:17:47 +0900
 tags: ["grokking-simplicity", "🌿"]
 description: Markdown summary with different options
 ---
