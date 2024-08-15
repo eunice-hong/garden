@@ -9,3 +9,7 @@ noindex: true
 ---
 
 생성 가능한 스레드 개수에 제한이 **없는** 디스패처
+
+# 참고 문서
+
+1. https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-unconfined.html

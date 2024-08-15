@@ -6,6 +6,7 @@ draft: true
 noindex: true
 aliases:
   - 구조적 동시성
+  - "structured concurrency"
 ---
 
 
