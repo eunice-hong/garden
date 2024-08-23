@@ -26,10 +26,11 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer({
-       filterFn: (node) =>
-         node.name !== "tags" && node.frontmatter?.noindex != "true",
-     })),
+    Component.DesktopOnly(
+        Component.Explorer({
+            filterFn: (node) =>
+                node.name !== "tags" && !node.file?.frontmatter?.noindex,
+        })),
   ],
   right: [
     Component.Graph(),
@@ -46,10 +47,11 @@ export const defaultListPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer({
-       filterFn: (node) =>
-        node.name !== "tags" && node.frontmatter?.noindex != "true",
-     })),
+    Component.DesktopOnly(
+        Component.Explorer({
+            filterFn: (node) => node.name !== "tags" && !node.file?.frontmatter?.noindex,
+        })
+    ),
   ],
   right: [],
 }
