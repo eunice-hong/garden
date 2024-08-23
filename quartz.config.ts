@@ -12,7 +12,8 @@ const config: QuartzConfig = {
     enableSPA: true,
     enablePopovers: true,
     analytics: {
-      provider: "plausible",
+      provider: "tinylytics",
+      siteId: 's68tB4tkQzpGHZe2HBeK'
     },
     locale: "en-US",
     baseUrl: "blog.eunice-hong.com",
