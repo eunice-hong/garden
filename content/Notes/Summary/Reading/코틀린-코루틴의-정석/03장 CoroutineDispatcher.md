@@ -378,6 +378,7 @@ Dispatchers.Main 는 화면에 요소를 표시하는 작업에 주로 사용됩
 
 [structured-concurrency]: https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/
 [structured-concurrency-kr]: https://jaeyeong951.medium.com/structured-concurrency-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-392cc45d01df
-[kotlin-coroutine-android]: https://developer.android.com/kotlin/coroutines
 
 -->
+
+[kotlin-coroutine-android]: https://developer.android.com/kotlin/coroutines
