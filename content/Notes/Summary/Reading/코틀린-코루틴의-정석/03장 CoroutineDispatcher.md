@@ -10,11 +10,11 @@ aliases:
 > [!cite]- Glossary: 펼쳐서, 본 챕터에 사용된 용어들을 모아 볼 수 있습니다.
 > | 한국어 표기      | 영문 표기                  | 기타     |
 > |-------------|------------------------|--------|
-> | 코루틴 디스패처    | [[this\|CoroutineDispatcher]]    |        |
+> | 코루틴 디스패처    | [[#11-coroutinedispatcher-란\|CoroutineDispatcher]]    |        |
 > | 제한된 디스패처    | [[Confined Dispatcher]]    |        |
 > | 무제한 디스패처    | [[Unconfined Dispatcher]]  |        |
-> | 구조적 동시성     | [[Structured Concurrency]] | 책 언급 X |
-> | IO 바운드      | [[IO Bound]]               | 책 언급 X |
+> | 구조적 동시성     | [[Structured Concurrency]] |        |
+> | IO 바운드      | [[IO Bound]]               |        |
 > | CPU 바운드     | [[CPU Bound]]              |        |
 
 # 1. 주요 개념 정리
@@ -103,7 +103,10 @@ CoroutineDispatcher를 직접 만들어 사용하는 것은 위험할 수 있다
 
 > This is a delicate API and its use requires care. Make sure you fully read and understand documentation of the declaration that is marked as a delicate API.
 
-`newSingleThreadContext`는 섬세한 주의가 필요한 API이니, 문서를 정독한 후 사용할 것을 권유한다. `newFixedThreadPoolContext` 도 마찬가지다. 개발자가 Dispatcher 를 직접 선언 할 경우, **빈칸을 채우시오** 하는 등 관리가 어렵다. 또한 협업을 진행하는 경우, 다른 개발자가 선언한 디스패처의 존재를 몰라 새로운 Dispatcher를 생성하는 오류를 범하기도 쉽다.
+`newSingleThreadContext`는 섬세한 주의가 필요한 API이니, 문서를 정독한 후 사용할 것을 권유한다. `newFixedThreadPoolContext` 도 마찬가지다. 
+개발자가 Dispatcher 를 직접 선언 할 경우, `newFixedThreadPoolContext` 함수를 사용해 CoroutineDispatcher 객체를 만들게 되면 특정 CoroutineDispatcher
+객체에서만 사용되는 스레드풀이 생성되며, 스레드풀에 속한 스레드의 수가 너무 적거나 많이 생성돼 비효율적으로 동작할 수 있다. 
+또한 협업을 진행하는 경우, 다른 개발자가 선언한 디스패처의 존재를 몰라 새로운 Dispatcher를 생성하여 리소스가 낭비되는 오류를 범하기도 쉽다.
 
 따라서, CoroutineDispatcher를 직접 선언하기 보다는 후술할 미리 선언된 Dispatcher를 사용하는 것이 좋다.
 
@@ -114,7 +117,7 @@ CoroutineDispatcher를 직접 만들어 사용하는 것은 위험할 수 있다
 | Dispatchers.IO         | 제한된 디스패처 | IO bound 작업  | 최대 64개 (1.7.2 버전 기준) 혹은 JVM 최대 범위만큼만 스레드를 생성할 수 있다. | 신규 스레드를 생성한다.                     |
 | Dispatchers.Default    | 제한된 디스패처 | CPU bound 작업 | 코루틴 사용 여부와 관계없이 처리 속도는 일정하다.                        | 공유 스레드 풀에 있는 스레드를 사용한다.           |
 | Dispatchers.Main       | 제한된 디스패처 | UI bound 작업  | UI 표시와 관련된 별도의 의존성 추가가 필요하다.                        | -                                 |
-| Dispatchers.Unconfined | 무제한 디스패처 | **빈칸을 채우시오** | **빈칸을 채우시오**                                        | **빈칸을 채우시오**                      |
+| Dispatchers.Unconfined | 무제한 디스패처 | -            | -                                                   | -                                 |
 
 ### 1.5.1. Dispatchers.IO
 
@@ -124,9 +127,7 @@ Dispatchers.IO 를 사용하여 애플리케이션 외부에 응답 요청하는
 응답이 도착하기 전까지 다른 작업들에게 자신이 사용하던 스레드 양도합니다. 
 이러한 특징 덕분에 입출력 작업 시, 다른 스레드를 막지 않아 애플리케이션 연산이 전반적으로 빨라집니다. 
 
-Dispatchers.IO 는 최대로 사용 가능한 스레드의 개수가 코틀린 버전 1.7.2 기준 64개, 혹은 JVM 최대 범위 만큼 **빈칸을 채우시오**  스레드를 사용합니다.
-
-**빈칸을 채우시오** 
+Dispatchers.IO 는 최대로 사용 가능한 스레드의 개수가 코틀린 버전 1.7.2 기준 64개, 혹은 JVM 최대 가용 갯수 중 큰 수만큼  스레드를 사용합니다.
 
 공유 스레드 풀에서 사용할 스레드를 선택합니다. 
 
@@ -166,6 +167,7 @@ Dispatchers.Main 는 화면에 요소를 표시하는 작업에 주로 사용됩
 
 
 
+<!--
 # 2. 코드 예제
 
 > 예시: [eunice-hong/read-kotlin-coroutine/Chapter03Activity](https://github.com/eunice-hong/read-kotlin-coroutine/blob/main/app/src/main/java/com/eunicehong/readkotlincoroutine/chapter03/Chapter03Activity.kt)
@@ -214,7 +216,6 @@ Dispatchers.Main 는 화면에 요소를 표시하는 작업에 주로 사용됩
 
 서버의 안정성이 크게 향상되었으며, 높은 트래픽 상황에서도 서버는 더 이상 과부하 상태에 빠지지 않았습니다. 사용자는 안정적인 서비스를 경험할 수 있었고, 서버 자원도 효율적으로 사용되었습니다.
 
-<!--
 # 3. 실전 응용
 
 > [!TODO]  해야할 일
