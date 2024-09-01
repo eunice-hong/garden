@@ -1,60 +1,294 @@
 ---
 title: 05장 async와 Deferred
-description: Markdown summary with different options
+description: "코루틴을 사용할 때 결과값을 받는 방법을 알아봅니다. `async` 함수를 통해 코루틴을 실행하고, `Deferred`를 통해 결과값을 받는 방법을 다룹니다."
 date: 2024-09-01 10:00:00 +0900
 draft: true
 noindex: false
 ---
- 
-> [!TODO] 작성 중인 문서입니다!
-
-
-
 
 ## 1. 주요 개념 정리
-1. 핵심 용어와 개념: 각 챕터에서 다루는 주요 용어와 개념을 간단히 요약합니다.
-2. 개념 간의 관계: 개념들이 서로 어떻게 연결되는지 설명합니다.
+
+### 1.1 `async` 함수란?
+
+> `Deferred`를 반환하는 코루틴 빌더 함수.
+
+```kotlin
+public fun CoroutineScope.launch(  
+    context: CoroutineContext = EmptyCoroutineContext,  
+    start: CoroutineStart = CoroutineStart.DEFAULT,  
+    block: suspend CoroutineScope.() -> Unit  
+): Job {  
+    val newContext = newCoroutineContext(context)  
+    val coroutine = if (start.isLazy)  
+        LazyStandaloneCoroutine(newContext, block) else  
+        StandaloneCoroutine(newContext, active = true)  
+    coroutine.start(start, coroutine, block)  
+    return coroutine  
+}
+
+public fun <T> CoroutineScope.async(  
+    context: CoroutineContext = EmptyCoroutineContext,  
+    start: CoroutineStart = CoroutineStart.DEFAULT,  
+    block: suspend CoroutineScope.() -> T  
+): Deferred<T> {  
+    val newContext = newCoroutineContext(context)  
+    val coroutine = if (start.isLazy)  
+        LazyDeferredCoroutine(newContext, block) else  
+        DeferredCoroutine<T>(newContext, active = true)  
+    coroutine.start(start, coroutine, block)  
+    return coroutine  
+}
+```
+
+`launch`와 유사한 코루틴 빌더 함수입니다. 둘은 반환하는 값의 유형이 다르다는 큰 차이점이 있습니다. 
+`launch`의 경우 `Job` 을 반환하고, `async` 는 `Job`의 일종인 `Deferred` 를 반환합니다. 
+그렇다면 `Deferred`는 무엇일까요?
 
 
+### 1.2 `Deferred` 란?
 
-### 1.1. async 사용해 결괏값 수신하기
-
-### 1.1.1. async 사용해 Deferred 만들기
-
-### 1.1.2. await를 사용한 결괏값 수신
-
-### 1.2. Deferred는 특수한 형태의 Job이다
-
-### 1.3. 복수의 코루틴으로부터 결괏값 수신하기
-
-### 1.3.1. await를 사용해 복수의 코루틴으로부터 결괏값 수신하기
-
-### 1.3.2. awaitAll을 사용한 결괏값 수신
-
-### 1.3.3. 컬렉션에 대해 awaitAll 사용하기
-
-### 1.4. withContext
-
-### 1.4.1. withContext로 async-await 대체하기
-
-### 1.4.2. withContext의 동작 방식
-
-### 1.4.3. withContext 사용 시 주의점
-
-### 1.5. 요약
+> 실행 결과를 받아 볼 수 있는 `Job`
 
 
-## 2. [코드 예제 분석][repository]
-1. 챕터 내 예제 코드 분석: 책에서 제공된 코드 예제를 직접 실행해보고, 코루틴이 실제로 어떻게 작동하는지 설명합니다.
-2. 추가 예제: 가능하다면 책의 내용을 바탕으로 추가적인 예제를 만들어보는 것도 좋습니다. 이를 통해 내용을 더 깊이 이해하고 다른 멤버들에게 설명할 수 있습니다.
+```kotlin
+public interface Deferred<out T> : Job {  
+  
+    public suspend fun await(): T  
+  
+    public val onAwait: SelectClause1<T>  
+  
+    @ExperimentalCoroutinesApi  
+    public fun getCompleted(): T  
+    
+    @ExperimentalCoroutinesApi  
+    public fun getCompletionExceptionOrNull(): Throwable?  
+}
+```
 
-## 3. 실전 응용
-1. 실제 사용 사례: 실전에서 어떻게 사용될 수 있는지 사례를 소개합니다.
-2. 장단점 및 한계: 실전에서 사용할 때의 장점과 단점을 정리하고, 어떤 상황에서 주의가 필요한지 논의합니다.
+`Deferred`는 `Job` 을 상속받아 만들어진 interface 입니다.
+`Job`의 경우, 코루틴 작업 결과를 반환할 수 없고, 작업 종료, 취소 정도의 상태만 파악할 수 있죠.
+`Deferred<T>`는 결과값을 한번 감싸는 역할을 하여, 코루틴 작업 결과가 어떻게 끝났는지 알 수 있게 해줍니다.
 
-## 4. 질의 응답
-1. 예상 질문 준비: 발표 내용을 기반으로 예상될 수 있는 질문을 미리 생각해보고 답변을 준비합니다. 질문을 받는 연습을 통해 발표 후 Q&A 세션에 대비합니다.
-2. 스터디 멤버와 토론: 발표 후에는 스터디 멤버들과 자유롭게 토론을 유도합니다. 멤버들의 이해도를 높이고 다양한 시각을 공유할 수 있습니다.
 
-## 5. 참고 자료
-1. 참고 자료: 추가로 참고할 수 있는 자료나 문서를 준비한다.
+# 2. 코루틴 결과값 받기
+
+### 2.1. `async`-`await` 를 사용하여, 코루틴 결과값 받기
+
+```kotlin
+fun main() = runBlocking<Unit> {  
+    val networkDeferred: Deferred<String> = async(Dispatchers.IO) {  
+        delay(1000L)  
+        return@async "서버: \"OK!\""  
+    }  
+    val result = networkDeferred.await()  
+    println(result)  
+}
+```
+
+```sh
+서버: "OK!"
+```
+
+앞서 배웠던 `async` 함수를 통해서 `String` 을 반환하는 함수를 만들어봤습니다. 
+네트워크 요청을 보낸 상황을 가정하고 만들었는데요. 1초 뒤에 "서버: "OK!""라는 문구를 반환하도록 했습니다. 
+`async` 함수 context에 `Dispatchers.IO` 를 넣어, 입출력 환경에서 실행되게 하고, 
+`delay(1000L)` 을 사용해 약 1초간 지연이 발생하는 상황을 재현했습니다. 
+
+`await` 를 실행하는 시점에 위 코루틴이 실행되고, 결과는 1초 뒤에 출력됩니다.
+
+# 3. 코루틴 결과값 **여러개** 받기
+
+만약 여러 코루틴 작업 결과물을 한번에 받으려면 어떻게 해야할까요? 
+예를 들어서, 여러 네트워크 요청을 보내고, 모든 응답을 받아야 하는 경우를 생각해보겠습니다.
+
+### 3.1. `await` 를 사용하여, 코루틴 결과값 받기
+
+```kotlin
+fun main() = runBlocking<Unit> {  
+    val startTime = System.currentTimeMillis()  
+    val interparkDeferred: Deferred<Array<String>> = async(Dispatchers.IO) {  
+        delay(2000L)  
+        arrayOf("장원영", "안유진")  
+    }  
+    val participantList1: Array<String> = interparkDeferred.await()  
+  
+    val yes24Deferred: Deferred<Array<String>> = async(Dispatchers.IO) {  
+        delay(1000L)  
+        arrayOf("카리나")  
+    }  
+    val participantList2: Array<String> = yes24Deferred.await()  
+  
+    val participantCount = participantList1.size + participantList2.size  
+    println("[${getElapsedTime(startTime)}] 참여자 수: $participantCount")  
+}
+```
+
+여러 티켓 판매 사이트 서버에 콘서트 참여자 목록을 요청한 상황을 예시로 코드를 만들어 보았습니다. 
+첫번째 코루틴에서는 파티 참여자가 누구인지 찾는데에 2초간 지연이 있고, 두번째 코루틴에서는 1초간 지연이 발생하도록 설정했습니다. 
+각 `Deferred`에 await 를 걸어, 마지막 줄에서 참여자 수를 출력하도록 했습니다. 
+동시에, `getElapsedTime` 함수를 통해 각 코루틴이 실행된 시간을 출력하도록 했습니다.
+
+```sh
+[지난 시간: 3018ms] 참여자 수: 3
+```
+
+결과는 총 세분이 참석하시는 걸로 보이네요. 
+그리고 소요시간은 2000ms 가 아닌, 3018ms 였습니다. 
+await 함수는 결과값을 받을 때까지 기다리기 때문에, 
+`participantList1` 을 받은 이후에 다음 `yes24Deferred.await()` 가 실행되었기 때문입니다.
+
+```mermaid
+```
+
+### 3.2. `await` 를 사용하여, 코루틴 결과값 받기
+
+```kotlin
+fun main() = runBlocking<Unit> {  
+    val startTime = System.currentTimeMillis()  
+    val interparkDeferred: Deferred<Array<String>> = async(Dispatchers.IO) {  
+        delay(2000L)  
+        arrayOf("장원영", "안유진")  
+    }  
+    val yes24Deferred: Deferred<Array<String>> = async(Dispatchers.IO) {  
+        delay(1000L)  
+        arrayOf("카리나")  
+    }  
+  
+    val participantList1: Array<String> = interparkDeferred.await()  
+    val participantList2: Array<String> = yes24Deferred.await()  
+  
+    val participantCount = participantList1.size + participantList2.size  
+    println("[${getElapsedTime(startTime)}] 참여자 수: $participantCount")  
+}
+```
+
+```sh
+[지난 시간: 2012ms] 참여자 수: 3
+```
+
+```mermaid
+gitGraph
+	commit id: " "
+	commit id: "interparkDeferred.async"
+	branch Default-Dispatcher-worker-1
+	checkout Default-Dispatcher-worker-1
+	commit id: "delay(1000L)"
+	checkout main
+	commit id: "yes24Deferred.async"
+	branch Default-Dispatcher-worker-2
+	checkout Default-Dispatcher-worker-2
+	commit id: "delay(2000L)"
+	checkout main
+	commit id: "interparkDeferred.await"
+	merge Default-Dispatcher-worker-1
+	commit id: "yes24Deferred.await"
+	merge Default-Dispatcher-worker-2
+```
+
+<!-- TODO: 설명 작성 필요  --> 
+
+위와 같이 확인해야할 서버가 두 곳이라면 좋겠지만, 열 군데라면 어떨까요?
+백 군데, 혹은 그 이상이라면, `await`를 줄줄이 나열하는 것은 코드 가독성을 해칠게 뻔합니다.
+
+`awaitAll` 을 통해, 여러 개의 `Deferred` 를 받아 한번에 결과값을 받을 수 있습니다.
+
+
+### 3.2. `awaitAll` 을 사용하여, 코루틴 결과값 받기
+
+```kotlin
+fun main() = runBlocking<Unit> {  
+    val startTime = System.currentTimeMillis()  
+    val interparkDeferred: Deferred<Array<String>> = async(Dispatchers.IO) {  
+        delay(2000L)  
+        arrayOf("장원영", "안유진")  
+    }  
+    val yes24Deferred: Deferred<Array<String>> = async(Dispatchers.IO) {  
+        delay(1000L)  
+        arrayOf("카리나")  
+    }  
+  
+    val participantLists: List<Array<String>> = awaitAll( interparkDeferred, yes24Deferred)  
+    val participantCount = participantLists.flatMap { it.toSet() }.size  
+  
+    println("[${getElapsedTime(startTime)}] 참여자 수: $participantCount")  
+}
+```
+
+```sh
+[지난 시간: 2007ms] 참여자 수: 3
+```
+
+<!-- TODO: 설명 작성 필요  -->
+
+```kotlin
+public suspend fun <T> awaitAll(vararg deferreds: Deferred<T>): List<T> =  
+    if (deferreds.isEmpty()) emptyList() else AwaitAll(deferreds).await()
+```
+
+<!-- TODO: 설명 작성 필요  -->
+
+# 4. withContext
+
+<!-- TODO: 설명 작성 필요
+~`async`-`await`~ => `withContext`
+-->
+
+### 4.1. `withContext` 로 `async`-`await` 대체하기
+
+```kotlin
+fun main() = runBlocking<Unit> {  
+    val networkDeferred: Deferred<String> = async(Dispatchers.IO) {  
+        delay(1000L)  
+        return@async "서버: \"OK!\""  
+    }  
+    val result = networkDeferred.await()  
+    println(result)  
+}
+```
+
+```kotlin
+fun main() = runBlocking<Unit> {  
+    val result: String = withContext<String>(Dispatchers.IO) {  
+        delay(1000L)  
+        "서버: \"OK!\""  
+    }  
+    println(result)  
+}
+```
+
+```sh
+서버: "OK!"
+```
+
+<!-- TODO: 설명 작성 필요  -->
+### 4.2. 동작 원리: `async`-`await`
+
+```sh
+<!-- TODO: 설명 작성 필요  -->
+```
+<!-- TODO: 설명 작성 필요  -->
+
+### 4.3. 동작 원리: `withContext`
+
+```sh
+<!-- TODO: 설명 작성 필요  -->
+```
+<!-- TODO: 설명 작성 필요  -->
+
+### 4.4. `withContext` 와 `async`-`await` 비교
+
+
+| Feature      | `withContext`                            | `async`-`await`                           |
+|--------------|------------------------------------------|-------------------------------------------|
+| **기본 목적**    | 컨텍스트 전환을 통한 코루틴 블록 내에서의 작업 처리            | 비동기 작업을 시작하고 결과를 기다리기 위해 사용               |
+| **반환 값**     | 지정된 컨텍스트에서 실행된 블록의 결과 반환                 | `Deferred<T>` 객체 반환, `await()` 호출 시 결과 반환 |
+| **사용 형태**    | `withContext(Dispatchers.IO) { ... }` 형식 | `async { ... }`와 `await()` 형식             |
+| **동작 방식**    | 새로운 코루틴을 생성하지 않고, 지정된 디스패처에서 실행          | 새로운 코루틴을 생성하여 비동기 작업 수행                   |
+| **병렬 처리**    | 기본적으로 병렬 처리를 하지 않음                       | 병렬로 여러 비동기 작업을 수행 가능                      |
+| **오버헤드**     | 새로운 코루틴을 생성하지 않아 오버헤드가 적음                | 코루틴 생성 오버헤드가 있음                           |
+| **코드 가독성**   | 간단한 컨텍스트 전환에 적합                          | 여러 비동기 작업이 있을 때 가독성이 좋음                   |
+| **사용 예시**    | I/O 작업이나 특정 스레드에서 실행할 때 사용               | 여러 비동기 작업의 결과를 동시에 받아야 할 때 사용             |
+| **에러 처리**    | `try-catch` 블록을 통해 일반적인 예외 처리 가능         | `await()` 사용 시 예외를 처리해야 함                 |
+| **컨텍스트 전환**  | 스레드를 전환하여 코드 블록을 실행                      | `async`로 생성된 각 코루틴이 비동기적으로 실행됨            |
+| **공유 자원 접근** | `withContext` 블록 내에서 안전하게 공유 자원 접근 가능    | `async` 블록 내에서 안전하게 접근하되 동기화 필요           |
+
