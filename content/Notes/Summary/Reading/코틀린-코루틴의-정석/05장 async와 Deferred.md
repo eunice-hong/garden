@@ -2,7 +2,7 @@
 title: 05장 async와 Deferred
 description: "코루틴을 사용할 때 결과값을 받는 방법을 알아봅니다. `async` 함수를 통해 코루틴을 실행하고, `Deferred`를 통해 결과값을 받는 방법을 다룹니다."
 date: 2024-09-01 10:00:00 +0900
-draft: true
+draft: false
 noindex: false
 ---
 
@@ -134,11 +134,29 @@ fun main() = runBlocking<Unit> {
 
 결과는 총 세분이 참석하시는 걸로 보이네요. 
 그리고 소요시간은 2000ms 가 아닌, 3018ms 였습니다. 
-await 함수는 결과값을 받을 때까지 기다리기 때문에, 
-`participantList1` 을 받은 이후에 다음 `yes24Deferred.await()` 가 실행되었기 때문입니다.
 
 ```mermaid
+gitGraph
+	commit id: " "
+	commit id: "interparkDeferred.async"
+	branch Default-Dispatcher-worker-1
+	checkout Default-Dispatcher-worker-1
+	commit id: "delay(2000L)"
+	checkout main
+    commit id: "❌yes24Deferred.async❌" type: HIGHLIGHT
+	merge Default-Dispatcher-worker-1 id: "interparkDeferred.await"
+	commit id: "yes24Deferred.async"
+    branch Default-Dispatcher-worker-2
+	checkout Default-Dispatcher-worker-2
+	commit id: "delay(1000L)"
+	checkout main
+	merge Default-Dispatcher-worker-2 id: "yes24Deferred.await"
 ```
+
+
+await 함수는 결과값을 받을 때까지 코루틴을 일시 중단시키기 때문에,
+`participantList1` 을 받은 이후에 다음 `yes24Deferred.await()` 가 실행되었습니다.
+
 
 ### 3.2. `await` 를 사용하여, 코루틴 결과값 받기
 
@@ -162,9 +180,20 @@ fun main() = runBlocking<Unit> {
 }
 ```
 
+이번에는 `await` 함수 호출 위치를 변경해보았습니다. 
+두 코루틴이 실행된 이후에 `await` 함수를 호출하여, 결과값을 받도록 변경하였습니다.
+
 ```sh
 [지난 시간: 2012ms] 참여자 수: 3
 ```
+
+이번에는 3018ms 가 아닌, 2012ms 가 걸렸습니다.
+runBlocking 블록 흐름을 일시 중단시키는 `await` 함수를 코루틴 실행 이후로 미루었기 때문에,
+두 코루틴이 동시에 실행되었고, 결과값을 받는 시간이 줄어든 것입니다.
+
+
+위 코드를 순서로 나타내면, 다음과 같습니다.
+
 
 ```mermaid
 gitGraph
@@ -172,20 +201,17 @@ gitGraph
 	commit id: "interparkDeferred.async"
 	branch Default-Dispatcher-worker-1
 	checkout Default-Dispatcher-worker-1
-	commit id: "delay(1000L)"
+	commit id: "delay(2000L)"
 	checkout main
 	commit id: "yes24Deferred.async"
 	branch Default-Dispatcher-worker-2
 	checkout Default-Dispatcher-worker-2
-	commit id: "delay(2000L)"
+	commit id: "delay(1000L)"
 	checkout main
-	commit id: "interparkDeferred.await"
-	merge Default-Dispatcher-worker-1
-	commit id: "yes24Deferred.await"
-	merge Default-Dispatcher-worker-2
+	merge Default-Dispatcher-worker-2 id: "yes24Deferred.await"
+	merge Default-Dispatcher-worker-1 id: "interparkDeferred.await"
+	commit id: "결과 출력"
 ```
-
-<!-- TODO: 설명 작성 필요  --> 
 
 위와 같이 확인해야할 서버가 두 곳이라면 좋겠지만, 열 군데라면 어떨까요?
 백 군데, 혹은 그 이상이라면, `await`를 줄줄이 나열하는 것은 코드 가독성을 해칠게 뻔합니다.
@@ -194,6 +220,14 @@ gitGraph
 
 
 ### 3.2. `awaitAll` 을 사용하여, 코루틴 결과값 받기
+
+`awaitAll` 함수는 여러 개의 `Deferred` 를 받아, 모든 결과값을 받을 때까지 기다립니다.
+
+```kotlin
+public suspend fun <T> awaitAll(vararg deferreds: Deferred<T>): List<T> =  
+    if (deferreds.isEmpty()) emptyList() else AwaitAll(deferreds).await()
+```
+
 
 ```kotlin
 fun main() = runBlocking<Unit> {  
@@ -214,26 +248,33 @@ fun main() = runBlocking<Unit> {
 }
 ```
 
+이전 코드에서 `await` 함수의 나열을 `awaitAll` 함수로 대체하였습니다.
+`awaitAll` 함수는 여러 개의 `Deferred` 를 받아, 모든 결과값을 받을 때까지 기다립니다.
+
+위 코드를 실행한 결과는 다음과 같습니다.
+
 ```sh
 [지난 시간: 2007ms] 참여자 수: 3
 ```
 
-<!-- TODO: 설명 작성 필요  -->
+처리 시간도 2007ms 로, 이전과 동일한 결과를 얻었습니다.
 
-```kotlin
-public suspend fun <T> awaitAll(vararg deferreds: Deferred<T>): List<T> =  
-    if (deferreds.isEmpty()) emptyList() else AwaitAll(deferreds).await()
-```
+`awaitAll` 함수를 사용하면, 여러 개의 `Deferred` 를 한번에 받을 수 있어 코드 가독성이 높아지니,
+여러 개의 결과값을 받아야 할 때는 `awaitAll` 함수를 사용하는 것이 좋습니다.
 
-<!-- TODO: 설명 작성 필요  -->
+# 4. [withContext][with_context_docs]
 
-# 4. withContext
+지금까지 `async`-`await` 를 통해 코루틴 결과값을 받는 방법을 알아보았습니다.
 
-<!-- TODO: 설명 작성 필요
-~`async`-`await`~ => `withContext`
--->
 
 ### 4.1. `withContext` 로 `async`-`await` 대체하기
+<style>
+    .multi-layout {           
+        column-count: 2;
+    }    
+</style>
+<div class="multi-layout">
+<p>
 
 ```kotlin
 fun main() = runBlocking<Unit> {  
@@ -245,6 +286,19 @@ fun main() = runBlocking<Unit> {
     println(result)  
 }
 ```
+```sh
+서버: "OK!"
+```
+
+`async`-`await` 를 사용하여, 코루틴 결과값을 받는 방법은 우리가 지금까지 사용해왔던 방법입니다.
+`async` 함수로 코루틴을 생성하면, `CoroutineDispatcher`가 작업 대기열에 해당 코루틴을 보관하다가
+실행할 스레드가 생기면 해당 스레드에 코루틴을 실행시킵니다.
+
+다만, `await` 함수를 실행하고 있기 때문에, 순차적으로 실행되는 것을 볼 수 있습니다.
+
+</p>
+
+<p>
 
 ```kotlin
 fun main() = runBlocking<Unit> {  
@@ -254,28 +308,24 @@ fun main() = runBlocking<Unit> {
     }  
     println(result)  
 }
+
 ```
 
 ```sh
 서버: "OK!"
 ```
 
-<!-- TODO: 설명 작성 필요  -->
-### 4.2. 동작 원리: `async`-`await`
+`withContext` 함수를 사용하여, `async`-`await` 와 비슷한 기능을 구현할 수 있습니다. 
+하지만 동작 방식은 완전히 다릅니다.
 
-```sh
-<!-- TODO: 설명 작성 필요  -->
-```
-<!-- TODO: 설명 작성 필요  -->
+`withContext` 함수는 새로운 코루틴을 생성하지 않고, 새로 실행하게 된 [[Notes/Summary/Reading/코틀린-코루틴의-정석/06장 CoroutineContext|CoroutineContext]]에 따라 코드 블록을 실행합니다.
+즉, `withContext` 의 람다는 현재 코루틴을 유지한 채로 새로운 스레드에서 실행됩니다. 
 
-### 4.3. 동작 원리: `withContext`
+<p>
+</div>
 
-```sh
-<!-- TODO: 설명 작성 필요  -->
-```
-<!-- TODO: 설명 작성 필요  -->
 
-### 4.4. `withContext` 와 `async`-`await` 비교
+### 4.2. `withContext` 와 `async`-`await` 비교
 
 
 | Feature      | `withContext`                            | `async`-`await`                           |
@@ -292,3 +342,5 @@ fun main() = runBlocking<Unit> {
 | **컨텍스트 전환**  | 스레드를 전환하여 코드 블록을 실행                      | `async`로 생성된 각 코루틴이 비동기적으로 실행됨            |
 | **공유 자원 접근** | `withContext` 블록 내에서 안전하게 공유 자원 접근 가능    | `async` 블록 내에서 안전하게 접근하되 동기화 필요           |
 
+
+[with_context_docs]: https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html
