@@ -45,7 +45,18 @@ aliases:
    2. [코틀린 코루틴의 정석/코드 저장소][repository]: 책의 예제 코드를 확인할 수 있습니다.
 
 
+<!--
 ## 4. 챕터별 발표 자료
+
+### 2024.08.25
+
+1. [박규동](https://kancho.tistory.com/m/24: CoroutineDispatcher)
+2. [이건희](https://sordid-triangle-02b.notion.site/96c1d63c5cf14aeaa1fa5e7e8001257f: 
+3. [이경준:3장](https://augustin26.tistory.com/m/85)
+4. [이경준:4장](https://augustin26.tistory.com/m/86)
+5. [정석준](https://docs.google.com/presentation/d/1XKyJxQACzoNuoGN4FL1OwbKRjF4tQbepoesiXESzbF4/edit?usp=sharing)
+6. [홍은진:3장](/Notes/Summary/Reading/코틀린-코루틴의-정석/03장-CoroutineDispatcher)
+7. [홍은진:4장](/Notes/Summary/Reading/코틀린-코루틴의-정석/04장-코루틴-빌더와-Job)
 
 ### 2024.08.25
 
@@ -69,7 +80,14 @@ aliases:
 8. [홍은진:5장](https://blog.eunice-hong.com/Notes/Summary/Reading/%EC%BD%94%ED%8B%80%EB%A6%B0-%EC%BD%94%EB%A3%A8%ED%8B%B4%EC%9D%98-%EC%A0%95%EC%84%9D/05%EC%9E%A5-async%EC%99%80-Deferred)
 9. [홍은진:6장](https://blog.eunice-hong.com/Notes/Summary/Reading/%EC%BD%94%ED%8B%80%EB%A6%B0-%EC%BD%94%EB%A3%A8%ED%8B%B4%EC%9D%98-%EC%A0%95%EC%84%9D/06%EC%9E%A5-CoroutineContext)
 
-<!--
+#### 2024.09.08
+
+1. [박규동](https://kancho.tistory.com/28)
+2. [이건희](https://sordid-triangle-02b.notion.site/96c1d63c5cf14aeaa1fa5e7e8001257f)
+3. [이경준](https://augustin26.tistory.com/89)
+4. [장진혁](https://docs.google.com/presentation/d/1HBMu2SNR0btxGREuxEHhhxnx7BXjH4-F7uyKpiHm24Y/edit?usp=sharing)
+5. [정석준](https://docs.google.com/presentation/d/10McCQb4jUr9AIBROWE1C-LJ1RL5VhhFCZBhx1OC7NKk/edit?usp=sharing)
+6. [홍은진](/Notes/Summary/Reading/코틀린-코루틴의-정석/07장-구조화된-동시성)
 
 -->
 [book]: http://www.acornpub.co.kr/book/kotlin-coroutines
