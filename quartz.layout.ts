@@ -26,14 +26,11 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Comments({
       provider: 'giscus',
       options: {
-        // from data-repo
-        repo: 'eunice-hong/pilates',
-        // from data-repo-id
+        repo: 'eunice-hong/garden',
         repoId: 'R_kgDOMDndhA',
-        // from data-category
         category: 'Announcements',
-        // from data-category-id
         categoryId: 'DIC_kwDOMDndhM4CiaiP',
+        reactionsEnabled: true,
       }
     }),
   ],
