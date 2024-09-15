@@ -218,6 +218,10 @@ JobImpl{Active}@3108bc
 `CoroutineName` 을 제거한 새로운 `CoroutineContext` 를 반환합니다.
 
 
+# 참고 자료
+
+- [[Notes/Summary/Reading/코틀린-코루틴의-정석/05장 async와 Deferred|05장 async와 Deferred]]
+- [[Notes/Summary/Reading/코틀린-코루틴의-정석/07장 구조화된 동시성|07장 구조화된 동시성]]
 
 
 [coroutine_name_docs]: https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-name/

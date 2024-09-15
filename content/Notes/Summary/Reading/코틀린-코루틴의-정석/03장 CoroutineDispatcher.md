@@ -165,9 +165,16 @@ Dispatchers.Main 는 화면에 요소를 표시하는 작업에 주로 사용됩
 따라서, Android 환경에서 많이 사용되며, 
 별도의 의존성([`kotlin-coroutine-android`][kotlin-coroutine-android]) 을 추가해야 사용할 수 있습니다.
 
+# 3. 질의 응답
 
+> [!question] Dispatchers.IO 는 최대 가용 스레드 수가 제한되어있는데, 왜 limitedParallelism을 사용할까요?
 
-<!--
+> [!note] limitedParallelism(1) 과 newSingleThreadContext() 사용 가능한 최대 스레드 개수는 1개지만, limitedParallelism 는 실행 중간에 스레드가 바뀔 수 있다.
+
+> [!note] 오래 걸리는 작업을 생성하는 데에는 Thread.sleep()이 좋다. 
+
+> [!note] 실전 적용. 이미지 변환 작업을 수행할 때, Dispatchers.Default를 사용하면 어떤 문제가 발생할 수 있을까요?
+
 # 2. 코드 예제
 
 > 예시: [eunice-hong/read-kotlin-coroutine/Chapter03Activity](https://github.com/eunice-hong/read-kotlin-coroutine/blob/main/app/src/main/java/com/eunicehong/readkotlincoroutine/chapter03/Chapter03Activity.kt)
@@ -215,8 +222,7 @@ Dispatchers.Main 는 화면에 요소를 표시하는 작업에 주로 사용됩
 **실전 적용 결과**
 
 서버의 안정성이 크게 향상되었으며, 높은 트래픽 상황에서도 서버는 더 이상 과부하 상태에 빠지지 않았습니다. 사용자는 안정적인 서비스를 경험할 수 있었고, 서버 자원도 효율적으로 사용되었습니다.
-
-# 3. 실전 응용
+#11-coroutinedispa# 3. 실전 응용
 
 > [!TODO]  해야할 일
 > 1. 실제 사용 사례: 실전에서 어떻게 사용될 수 있는지 사례를 소개합니다.
@@ -374,11 +380,9 @@ Dispatchers.Main 는 화면에 요소를 표시하는 작업에 주로 사용됩
 
 # 5. 참고 자료
 
-> 추가로 참고할 수 있는 자료나 문서를 준비한다.
+- [[Notes/Summary/Reading/코틀린-코루틴의-정석/04장 코루틴 빌더와 Job|04장 코루틴 빌더와 Job]]
+
 
 [structured-concurrency]: https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/
 [structured-concurrency-kr]: https://jaeyeong951.medium.com/structured-concurrency-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-392cc45d01df
-
--->
-
 [kotlin-coroutine-android]: https://developer.android.com/kotlin/coroutines

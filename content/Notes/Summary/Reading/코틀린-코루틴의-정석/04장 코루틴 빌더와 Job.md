@@ -303,6 +303,9 @@ fun printJobState(job: Job) {
 %%  [!question]- while 외에 실행 대기 시점이나 일시 중단 점을 알 수 없는 경우는? %%
 
 
-%% # 2. 참고 자료 %%
+# 2. 참고 자료
+
+- [[Notes/Summary/Reading/코틀린-코루틴의-정석/03장 CoroutineDispatcher|03장 CoroutineDispatcher]]
+- [[Notes/Summary/Reading/코틀린-코루틴의-정석/05장 async와 Deferred|05장 async와 Deferred]]
 
 [job_docs]: https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/

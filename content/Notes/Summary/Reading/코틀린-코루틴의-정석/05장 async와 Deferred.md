@@ -358,4 +358,8 @@ fun main() = runBlocking<Unit> {
 
 [with_context_docs]: https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html
 
+
+- [[Notes/Summary/Reading/코틀린-코루틴의-정석/04장 코루틴 빌더와 Job|04장 코루틴 빌더와 Job]]
+- [[Notes/Summary/Reading/코틀린-코루틴의-정석/06장 코루틴 빌더와 Job|06장 코루틴 빌더와 Job]]
+
 <!-- **에러 처리** | `try-catch` 블록을 통해 일반적인 예외 처리 가능           | `await()` 사용 시 예외를 처리해야 함  상세 설명 8강에서 계속한다. -->
