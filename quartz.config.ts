@@ -21,6 +21,10 @@ const config: QuartzConfig = {
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
     generateSocialImages: false,
+    passProtected: {
+      enabled: true,
+      iteration: 2e6,
+    },
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
