@@ -5,5 +5,5 @@ draft: false
 noindex: true
 ---
 
-> 🎤 What I've learned from conferences and meetups."
+> 🎤 What I've learned from conferences and meetups.
 
