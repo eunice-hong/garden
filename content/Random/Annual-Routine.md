@@ -1,7 +1,7 @@
 ---
 title: 연간 루틴
 description: 저의 연간 루틴을 소개합니다.
-draft: false
+draft: true
 noindex: false
 aliases:
   - Annual Routine
