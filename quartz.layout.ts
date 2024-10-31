@@ -41,7 +41,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.DesktopOnly(
         Component.Explorer({
             filterFn: (node) =>
-                node.name !== "tags" && !node.file?.frontmatter?.noindex,
+                node.name !== "tags" && node.name !== "Projects" && !node.file?.frontmatter?.noindex,
         })),
   ],
   right: [
@@ -86,7 +86,7 @@ export const defaultListPageLayout: PageLayout = {
     Component.Darkmode(),
     Component.DesktopOnly(
         Component.Explorer({
-            filterFn: (node) => node.name !== "tags" && !node.file?.frontmatter?.noindex,
+            filterFn: (node) => node.name !== "tags" && node.name !== "Projects" && !node.file?.frontmatter?.noindex,
         })
     ),
   ],
