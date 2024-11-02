@@ -1,61 +1,24 @@
 ---
-title: "Welcome to Eunice's Garden 🪴"
-description: "Eunice's Garden is a digital garden built with Quartz, a static site generator for digital gardens. This garden is a place for me to share my thoughts, ideas, and projects. I hope you find something interesting here!"
+title: "Eunice's Garden 🪴"
+description: "유니스의 정원은 제 생각, 아이디어, 프로젝트를 공유하는 장소입니다. 저의 정원에서 재밌는 것을 찾을 수 있으면 좋겠습니다! 🤞"
 date: 2024-06-02
 ---
 
-Eunice's Garden is a [`digital garden`](digital-garden.md) built with [Quartz](https://quartz.jzhao.xyz/),
-a static site generator for digital gardens.
-This garden is a place for me to share my thoughts, ideas, and projects.
-I hope you find something interesting here!
+_환영합니다! 유니스의 정원은 제 생각, 아이디어, 프로젝트를 공유하는 장소입니다. 저의 정원에서 흥미로운 것을 찾길 바랍니다! 🌿_
 
-> [!check]- Before you start exploring, here are some things you should know:
-> _저는 주로 한국어를 사용합니다. Заримдаа би монголоор ярьж, たまには日本語で話したいです。_
-> _Also, I'd love to talk in English._
-> _정원에는 다양한 언어로 이야기가 자라고 있습니다. Хэрэв би таны ойлгохгүй хэлээр ярьж байгаа бол_
-> _Just use translation tools like Google Translate or DeepL._
+# 🌱 시작하기
 
-# 🌱 Get Started
+- [🙋🏻‍♀ About](/about): 저에 대한 간단한 소개와 정보를 확인할 수 있습니다.
+- [🆕 Now](/now): 저에게 일어나는 일들에 대해 간헐적으로 업데이트합니다.
 
-To get started, you can explore the following sections:
+# 🔎 탐험하기
 
-## [🙋🏻‍♀ About](/about)
+1. [💭 Essay](/essays): 저의 긴 이야기와 생각을 읽어보세요. 
+2. [📚 Reading](/notes/Summary/Reading): 제가 읽은, 읽을, 읽고 있는 책에 대한 요약을 확인할 수 있습니다.
+3. [📒 Handbook](/notes/Summary): 책, 강의, 이벤트 등에서 배운 내용을 복기하기 위한 요약글 창고입니다.
 
-Learn more about me
+# 🤝 만나기
 
-## [🆕 Now](/now)
-
-A sporadically updated log of what I'm reading, exploring, and thinking about
-
-
-# 🎵 Blog: My blog posts
-
-## [📝 Summary](/notes/Summary): A collection of my notes
-
-1. [🧑‍🏫Courses](/notes/Summary/Course): A collection of courses I've taken. 
-2. [📑 Documentation](/notes/Summary/Documentation): A collection of documentation I've written.
-3. [📚Reading](/notes/Summary/Reading): Books I’ve read and books I like the idea of having read.
-    Recently, I'm working on summarizing the book "_[[Notes/Summary/Reading/코틀린-코루틴의-정석/index|코틀린 코루틴의 정석]]_"
-
-<!--
-## 🌿 Projects
-
-#### [🌿 Projects](/projects): A collection of my projects
-
-#### [🌱 Digital Garden](/notes/digital-garden): A collection of notes on digital gardening
-
-#### [🌐 Networked Thought](/notes/networked-thought): A collection of notes on networked thought
-
-#### [📧 Contact](/contact): Feel free to reach out to me at []() or follow my work on [GitHub/eunice-hong]() 
-
-#### [📅 2024-06-02](/notes/ko-KR-2024-06-02-2024-06-02-Hello-World): Hello, World!
-
-#### [📚 Books](/library): Books I’ve read and books I like the idea of having read.
-
-#### [📝 Blog](/blog): My blog posts
-
-TODO: Add more content
-- [Opinionated, longform narrative writing with an agenda](/essays)
-- [Books I’ve read and books I like the idea of having read.](/library)
-- [Contact me](/contact)
--->
+- 저의 코드가 궁금하다면, [GitHub](https://github.com/eunice-hong) 프로필을 방문해주세요.
+- 저와 일하고 싶으시다구요? [LinkedIn](https://www.linkedin.com/in/eunjin-hong-kr)으로 연락해주세요.
+- 그 외, 재미있는 이야기가 있다면, [이메일](mailto:contact@eunice-hong.com)을 보내주세요.
