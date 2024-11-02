@@ -37,12 +37,8 @@ export const defaultContentPageLayout: PageLayout = {
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
+    Component.DesktopOnly(Component.TableOfContents()),
     Component.Darkmode(),
-    Component.DesktopOnly(
-        Component.Explorer({
-            filterFn: (node) =>
-                node.name !== "tags" && node.name !== "Projects" && !node.file?.frontmatter?.noindex,
-        })),
   ],
   right: [
     Component.Graph({
@@ -71,7 +67,6 @@ export const defaultContentPageLayout: PageLayout = {
         opacityScale: 1,
       },
     }),
-    Component.DesktopOnly(Component.TableOfContents()),
     Component.Backlinks(),
   ],
 }
