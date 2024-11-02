@@ -11,7 +11,7 @@ date: 2024-06-02
 
 # 2024-08-04
 
-I joined a book club to dig into ‘[[garden/content/Notes/Summary/Reading/코틀린-코루틴의-정석/index|코틀린 코루틴의 정석]]’. It’s been almost three years since I started getting together with other software developers. I’m still in a pandemic mood, even though COVID-19 has vanished from my world.
+I joined a book club to dig into ‘[[notes/Summary/Reading/코틀린-코루틴의-정석/index|코틀린 코루틴의 정석]]’. It’s been almost three years since I started getting together with other software developers. I’m still in a pandemic mood, even though COVID-19 has vanished from my world.
 
 Being a busy lady means nobody pushes me to finish the book that I’ve only skimmed the first chapter of. One day, I realized I was just sitting there, doom-scrolling without doing anything productive. I need someone to keep me on track.
 
