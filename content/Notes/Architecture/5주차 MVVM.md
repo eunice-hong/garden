@@ -1,36 +1,12 @@
 ---
-title: "MVVM Pattern"
-draft: true
+title: MVVM Pattern
+draft: false
 noindex: true
+tags:
+  - android
+date: 2020-05-17T13:00:00
 ---
-
-🙈 fun beforeSession() {
-
-}
-
-🙊 fun onSession() {
-
-MVVM
-
-Example
-
-}
-
-🐒 fun afterSession() {
-
-BaseObservable
-
-}
-
-# 🙈 fun beforeSession() {
-
-버튼 클릭 이후 같은 동작 실행 못하게 막는 방법
-
-중복 클릭 방지
-
-# }
-
-# 🙊 fun onSession() {
+# 세션 노트
 
 MVx ⇒ model view 사이를 어떻게 이어줄까?
 
@@ -51,38 +27,39 @@ MVx ⇒ model view 사이를 어떻게 이어줄까?
     - activity
     - viewmodel
     - observer
-        - class Observer<T>
-            - private val observerList<>
-            - observe(observer: (T)→ )
-            - notify(value: T)
-            - example code!
-                ```
-                import java.util.Scanner
-                typealias Observer = (event: String) -> Unit;
-                
-                class EventSource {
-                    private val observers = mutableListOf<Observer>()
-                
-                    private fun notifyObservers(event: String) {
-                        observers.forEach { it(event) }
-                    }
-                
-                    fun addObserver(observer: Observer) {
-                        observers += observer
-                    }
-                
-                    fun scanSystemIn() {
-                        val scanner = Scanner(System.`in`)
-                        while (scanner.hasNext()) {
-                            val line = scanner.nextLine()
-                            notifyObservers(line)
-                        }
-                    }
-                }
-                ```
-        - 이전 데이터와 다를 경우 update 하지 않을 것을 입력해줘야한다. (⚠️ 무한루프 주의)
 
-~~안드로이드에 있는 ViewModel, LiveData 없이 만들어보자~~
+`class Observer<T>`
+- private val observerList<>
+- observe(observer: (T)→ )
+- notify(value: T)
+- example code
+	```kotlin
+	import java.util.Scanner
+	typealias Observer = (event: String) -> Unit;
+	
+	class EventSource {
+		private val observers = mutableListOf<Observer>()
+	
+		private fun notifyObservers(event: String) {
+			observers.forEach { it(event) }
+		}
+	
+		fun addObserver(observer: Observer) {
+			observers += observer
+		}
+	
+		fun scanSystemIn() {
+			val scanner = Scanner(System.`in`)
+			while (scanner.hasNext()) {
+				val line = scanner.nextLine()
+				notifyObservers(line)
+			}
+		}
+	}
+	```
+- 이전 데이터와 다를 경우 update 하지 않을 것을 입력해줘야한다. (⚠️ 무한루프 주의)
+
+~안드로이드에 있는 ViewModel, LiveData 없이 만들어보자~
 
 databinding을 사용하려면 ObservableField를 사용해야한다
 
@@ -93,9 +70,8 @@ databinding을 사용하려면 ObservableField를 사용해야한다
 
 ! BindingAdapter → value should be `NULLABLE`
 
-# }
 
-# 🐒 fun afterSession() {
+# 추가 자료
 
 - [ ] swipable listview로 바꿔보자
 - [ ] paging 넣어보자
@@ -118,5 +94,3 @@ databinding을 사용하려면 ObservableField를 사용해야한다
 > [!info]  
 > undefined  
 > [http://kpp.unaux.com/category/tech-news/?i=1](http://kpp.unaux.com/category/tech-news/?i=1)
-
-# }

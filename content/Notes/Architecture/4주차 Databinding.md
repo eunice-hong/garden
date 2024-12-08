@@ -1,44 +1,12 @@
 ---
-title: "Data Binding"
-draft: true
+title: Data Binding
+draft: false
 noindex: true
+tags:
+  - android
+date: 2020-05-10T13:00:00
 ---
-
-🙈 fun beforeSession() {
-
-🦌 환경설정
-
-}
-
-🙊 fun onSession() {
-
-🔗 Data Binding
-
-}
-
-🐒 fun afterSession() {
-
-subtitle
-
-third title
-
-}
-
-# 🙈 fun beforeSession() {
-
-## 🦌 환경설정
-
-- UI에 데이터를 던지고 UI에서 보여주게 하는 것
-
-> [!info]  
-> undefined  
-> [https://developer.android.com/topic/libraries/data-binding](https://developer.android.com/topic/libraries/data-binding)
-
-app/build.gradle
-
-# }
-
-# 🙊 fun onSession() {
+# 세션 노트
 
 ## 🔗 Data Binding
 
@@ -66,12 +34,12 @@ note viewholder ⇒ 인자로 parent view를 준다.
 
 DBUtil.bind(itemView)!!
 
-# }
+# 추가 자료
 
-# 🐒 fun afterSession() {
+### 🦌 환경설정
 
-## subtitle
+- UI에 데이터를 던지고 UI에서 보여주게 하는 것
 
-### third title
-
-# }
+> [!info]  
+> undefined  
+> [https://developer.android.com/topic/libraries/data-binding](https://developer.android.com/topic/libraries/data-binding)

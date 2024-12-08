@@ -1,14 +1,14 @@
 ---
 title: "개발자를 위한 ChatGPT: 프롬프팅 엔지니어링"
-description: "ChatGPT를 사용하는 방법을 알아봅니다."
+description: ChatGPT를 사용하는 방법을 알아봅니다.
 date: 2023-05-06
 draft: false
-tags: 
+tags:
   - 🌿
   - ChatGPT
   - OpenAI
   - AI
-  - 프롬프팅 엔지니어링
+  - 프롬프팅
 ---
 
 # 시작하기 앞서

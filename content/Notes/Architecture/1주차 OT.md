@@ -1,30 +1,30 @@
 ---
 title: Orientation
-draft: true
+draft: false
 noindex: true
+tags:
+  - android
+date: 2020-04-19T13:00:00
 ---
 
 
 # 👻 스터디 소개
 
 > [!info] StudyFork/GoogryAndroidArchitectureStudy  
-> Contribute to StudyFork/GoogryAndroidArchitectureStudy development by creating an account on GitHub.  
-> [https://github.com/StudyFork/GoogryAndroidArchitectureStudy/tree/master/sjjeong](https://github.com/StudyFork/GoogryAndroidArchitectureStudy/tree/master/sjjeong)  
+> Contribute to StudyFork/GoogryAndroidArchitectureStudy development by creating an account on[GitHub](https://github.com/StudyFork/GoogryAndroidArchitectureStudy/tree/master/sjjeong)  .
 
 
-
-1. 방식
-    1. 설명
-    2. 시간 있으면, 한번 해보거나 다시 설명 해본다
-    3. (월 저녁까지) 과제를 통해 변형하여 적용해 본다.
-    4. 수요일까지는 리뷰 꼭 한다!
-    5. 수 저녁 - 금요일까지 석준님 리뷰
-2. github 사용 방법 익히기
+## 진행 방식
+1. 시간 있으면, 한번 해보거나 다시 설명 해본다
+2. (월 저녁까지) 과제를 통해 변형하여 적용해 본다.
+3. 수요일까지는 리뷰 꼭 한다!
+4. 수 저녁 - 금요일까지 석준님 리뷰
+5. github 사용 시 주의할 점
     1. commit 전에 reformat을 반드시 해준다.
         ⌘ + ⌥ + L
     2. commit message 잘 쓰기
-    3. 커밋 작게하자
-    4. 고민 많이 하고 짜자 ..
+    3. 커밋 작게 하자
+    4. 고민 많이 하고 짜자
     5. label 🏷
         1. `Review Needed` : 현재 리뷰가 필요한 상태입니다
         2. `Answer Needed` : Review 했으니 대답해 주세요
@@ -86,60 +86,10 @@ noindex: true
  (Java는 9주차를 진행하지 않습니다.)
 ```
 
-# 과제 뚜.둥!
-
-💡
+# 과제
 
 아무 것도 없이 만들어 보기!
 
 > [!info] 검색 API 영화 검색 개발가이드  
 > NAVER Developers - 검색 API 영화 검색 개발가이드  
 > [https://developers.naver.com/docs/search/movie/](https://developers.naver.com/docs/search/movie/)  
-
-> [!info]  
-> undefined  
-> [https://github.com/boostcamp-connect/boostcamp_3_Android](https://github.com/boostcamp-connect/boostcamp_3_Android)  
-
----
-
-  
-
-# After Session
-
-```
-# TODO NOTES
-
-[X] dependency 넣기
-	- Retrofit
-	- Constraint
-	- CardView
-	- 
-[X] view 구성하기
-[X] API 연결하기
-[X] 동작 확인하기
-```
-
-  
-
-  
-
-# Notes
-
-  
-
-### **Color Palette Names**
-
-- colorPrimary – The color of the app bar.
-- colorPrimaryDark – The color of the status bar and contextual app bars; this is normally a dark version of colorPrimary.
-- colorAccent – The color of UI controls such as check boxes, radio buttons, and edit text boxes.
-- windowBackground – The color of the screen background.
-- textColorPrimary – The color of UI text in the app bar.
-- statusBarColor – The color of the status bar.
-- navigationBarColor – The color of the navigation bar.
-
-  
-
-# Reference
-
-> [!info] https://github.com/StudyFork/GoogryAndroidArchitectureStudy/pull/563/files  
-> [https://github.com/StudyFork/GoogryAndroidArchitectureStudy/pull/563/files](https://github.com/StudyFork/GoogryAndroidArchitectureStudy/pull/563/files)

@@ -1,36 +1,14 @@
 ---
-title: "MVP 소개"
-draft: true
+title: MVP 소개
+draft: false
 noindex: true
+tags:
+  - android
+date: 2020-05-03T13:00:00
 ---
+# 🙊 세션 노트
 
-🙈 fun beforeSession() {
-
-}
-
-🙊 fun onSession() {
-
-🏆 MVP
-
-V: Activity, Fragment, View
-
-P: 로직 처리
-
-EXAMPLE: 로그인 화면
-
-}
-
-🐒 fun afterSession() {
-
-}
-
-# 🙈 fun beforeSession() {
-
-}
-
-# 🙊 fun onSession() {
-
-# 🏆 MVP
+## MVP
 
 > [!info] android/architecture-samples  
 > This version of the app is called todo-mvp, and provides a foundation for other samples in this project. The sample aims to: Provide a basic Model-View-Presenter (MVP) architecture without using any architectural frameworks. Act as a reference point for comparing and contrasting the other samples in this project.  
@@ -97,12 +75,3 @@ UI - user input / output 처리
             - implement Contract.View, AppCompatActivity
                 - dagger를 이용해서 @inject할 수 있다.
 
-# }
-
-# 🐒 fun afterSession() {
-
-search
-
-→ TODO shortcut for today date, author ...
-
-# }
