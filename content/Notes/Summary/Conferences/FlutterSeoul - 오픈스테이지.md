@@ -1,7 +1,8 @@
 ---
 title: FlutterSeoul - 오픈 스테이지
 description: FlutterSeoul 오픈 스테이지에서 발표한 내용을 정리한 문서입니다.
-draft: true
+date: 2024-11-08 13:00:00 +0900
+draft: false
 ---
 
 > 평소에 지식을 나누고 싶었던 사람, 그리고 Flutter 개발자끼리 모이고 싶은 누구나 참여 가능한 자리입니다. Flutter에 관심 있는 누구나 연사로 참여하여 자신의 경험과 노하우를 공유할 수 있습니다. [링크](https://event-us.kr/flutterseoul/event/93958)
