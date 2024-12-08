@@ -1,9 +1,13 @@
 ---
 title: 레거시 코드 활용 전략
 description: 레거시 코드 활용 전략 - 손대기 두려운 낡은 코드, 안전한 변경과 테스트 기법
-draft: true
+tags: ["Antilibrary", "Legacy", "Refactor"]
+draft: false
 noindex: true
 ---
+
+## 목차
+
 **1부. 코드 변경의 메커니즘**  
 1장. 소프트웨어 변경  
 2장. 피드백 활용  
