@@ -1,6 +1,6 @@
 ---
 title: "Notes"
-description: "Every posts that I've written."
+description: "Loose, unopinionated notes on things I don’t entirely understand yet."
 draft: false
 noindex: true
 ---
