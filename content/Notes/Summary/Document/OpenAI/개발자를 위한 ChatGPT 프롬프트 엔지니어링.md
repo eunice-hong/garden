@@ -8,7 +8,7 @@ tags:
   - ChatGPT
   - OpenAI
   - AI
-  - 프롬프팅
+  - prompting
 ---
 
 # 시작하기 앞서
