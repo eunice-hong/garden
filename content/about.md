@@ -1,39 +1,28 @@
 ---
-title: "Eunice Hong"
-description: "Hi, I'm Eunice Hong. I'm a software engineer and writer. I write about programming, software engineering, and personal growth."
+title: "About - 홍은진"
+description: "반갑습니다. 안드로이드 개발자 홍은진에 대한 소개입니다."
+date: 2024-12-08
+draft: false
 ---
 
-[//]: # ([🇰🇷한국어]&#40;./about/홍은진.md&#41; | [🇯🇵 日本語]&#40;./about/ユニス・ホン.md&#41; | [🇲🇳 Монгол]&#40;./about/Эүнис-Хонг.md&#41; | [🔠 English]&#40;./about.md&#41;)
+<img src="images/about.png" style="float: left; margin: 0px 20px 0px 0px" alt="Profile Image" width="300px"/>
 
-Hi, I'm Eunice Hong. I'm a software engineer and writer. I write about programming, software
-engineering, and personal growth.
+| 항목   | 내용                                                                                                                            |
+|------|-------------------------------------------------------------------------------------------------------------------------------|
+| 이름   | 홍은진                                                                                                                           |
+| 국적   | 대한민국                                                                                                                          |
+| 직업   | Android 앱 개발자                                                                                                                 |
+| 데뷔   | 2019년 5월 13일                                                                                                                  |
+| 위치   | 서울, 대한민국                                                                                                                      |
+| MBTI | [INTJ][intj]                                                                                                                  |
+| 취미   | 필라테스[🔗][pilates_blog]                                                                                                        |
+| 링크   | [🅱️ Blog](https://blog.eunice-hong.com) [🐱GitHub](https://github.com/eunice-hong) [📧Email](mailto:contact@eunice-hong.com) |
 
-![Eunice Hong](images/about.png)
 
-#### Personal Story
+대한민국의 개발자, 안드로이드 앱을 주로 개발합니다.
 
-Hello! I’m Eunice Hong, a passionate Android app developer based in the vibrant city of Seoul. My
-journey into the tech world started in 2019, driven by a fascination with mobile technology and the
-potential to create impactful digital experiences.
+2019년 5월 13일에 개발자로 데뷔했습니다. 서울에서 주로 활동하며, 현재 [Plain Bagel][pbagel]에서 Picka를 개발 중입니다. 닉네임으로는 Eunice(유니스)를 자주 사용합니다.
 
-#### Professional Experience
-
-Since 2019, I've been developing Android apps, primarily using Kotlin. 
-Currently, I'm working at Plain Bagel, developing an innovative app called Picka. 
-My expertise spans across creating user-friendly and efficient mobile solutions.
-
-#### Values and Vision
-
-I believe in creating intuitive and accessible mobile applications that enhance everyday life. 
-My goal is to develop apps that not only meet user needs but also inspire joy and creativity. 
-I'm committed to continuous learning and staying ahead in the ever-evolving tech landscape.
-
-#### Personality
-
-Outside of work, I enjoy exploring new technologies, doing [Pilates](https://pilates.eunice-hong.com) and 
-experimenting with Korean cuisine. These hobbies keep me refreshed and bring a unique perspective to
-my development work.
-
-Feel free to reach out to me at [contact@eunice-hong.com](mailto:contact@eunice-hong.com) 
-or follow my work on [GitHub/eunice-hong](https://github.com/eunice-hong)
-
+[pilates_blog]: https://pilates.eunice-hong.com/
+[pbagel]: https://pbagel.com
+[intj]: https://www.16personalities.com/intj-personality
