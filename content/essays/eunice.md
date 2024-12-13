@@ -1,20 +1,23 @@
 ---
-title: "Why I call myself \"Eunice\""
-description: "This is why I call myself 'Eunice'"
-draft: true
-alias: ["Eunice", "eunice"]
+title: 닉네임을 'Eunice'로 부르는 이유
+description: 한국어 이름을 영어 이름 'Eunice'로 소개하게된 이유를 적어보았다.
+draft: false
+aliases:
+  - Eunice
+  - eunice
 ---
+<img src="../images/korean_name_for_english_name.jpeg"  alt="Eunice를 한국어 이름으로 변환한 이미지" style="width: 100%; max-width: 200px; margin: 0 auto; display: block;">
 
-1.	배경 설명: 왜 외국인들이 이름을 발음하기 어려웠는지, 그로 인해 어떤 불편을 겪었는지 자세히 서술.
-2.	이름 탐색 과정: 발음과 표기가 쉬운 이름을 찾는 과정에서 어떤 고민을 했는지, 다른 대안은 없었는지.
-3.	“Eunice”를 선택한 이유: 이 이름이 왜 눈에 띄었는지, 어떤 점이 특별히 마음에 들었는지.
+살면서 한국어 사용자가 아닌 사람에게 나를 소개할 일이 종종 있었다. 내 이름을 ‘은진’이라고 안내했을 때, 그들은 고개를 끄덕이지만 항상 나를 아래 이름 중 하나로 불렀다.
 
-Why I Call Myself “Eunice”
+- 언진
+- 윤진
+- 운진
+- 윤지
+- 운진
 
-Growing up, I often found it challenging to introduce myself to non-Koreans. My Korean name, while meaningful and beautiful to me, often posed a challenge for others to pronounce. Over time, this small yet recurring issue started to feel like an unnecessary barrier in my interactions.
+그가 나의 이름을 부르더라도 나는 비로소 꽃이 되지 못한다.
 
-In an effort to make things easier—for both myself and the people I met—I began searching for an alternative name that was simple, easy to pronounce, and still resonated with me. I wanted something that felt natural, not forced, and reflected a part of who I am.
+그러던 중 고등학교 영어 수업 시간에 선생님께서 “이름에 ‘은’자 들어가는 사람은 영어 이름 Eunice라고 해라”라고 했던 일이 떠올랐다. 영어 이름이라고 해서 한국어 이름을 완전히 저버리는 것이 아닌 방식이라 썩 마음에 들었다.  또한 대부분 나라에서 무리없이 발음할 수 있도록 받침이나 거센소리가 없는 것도 마음에 들었다. 
 
-That’s when I came across the name “Eunice.” It caught my eye immediately. The name was easy to pronounce and spell, and it had a certain elegance that appealed to me. It felt like a perfect fit, and adopting it as my English name has made introductions and conversations much smoother ever since.
-
-이와 같이 조금 더 구체적으로 작성하면 에세이로 분류되기 쉬울 것입니다! 😊
+물론, 영어 이름 변환기로 보니 100년전 이름이리는게 유쾌하지는 않았다. 그래도 금방 유행에 휩쓸려 버릴 이름보다는 낫겠다 생각하여 사용하게 되었다.
