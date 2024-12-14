@@ -4,7 +4,7 @@ description: 앱 바이럴 마케팅용 심리테스트 웹 페이지를 제작 
 date: 2022-09-01
 ---
 
-![Header Image](https://user-images.githubusercontent.com/76774659/203481865-b4563a43-916d-40b2-8014-b1dc17868d70.png)
+![Header Image](./assets/302226021_505005591627747_6001433885988069757_n.jpg)
 
 # Key Features
 

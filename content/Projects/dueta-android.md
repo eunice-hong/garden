@@ -4,7 +4,7 @@ description: 인공지능을 사용하여 연인과 대화하는 듯한 경험�
 date: 2019-11-01T10:00:00
 ---
 
-![Header Image](https://scontent-gmp1-1.xx.fbcdn.net/v/t39.30808-6/359800923_742324174571044_5305544463470628107_n.png?_nc_cat=100&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=9aJZSR7k0CIQ7kNvgFDJtVB&_nc_zt=23&_nc_ht=scontent-gmp1-1.xx&_nc_gid=AQBZokyhW8cV_KKzO1lW8Yr&oh=00_AYB_K_TJ0lTZILXRXh-dqoMK2po12eOFLkZvoTe_D1Xigw&oe=672B9398)
+![Header Image](./assets/359800923_742324174571044_5305544463470628107_n.png)
 
 # Key Features
 

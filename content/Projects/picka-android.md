@@ -4,7 +4,7 @@ description: 채팅형 인터랙티브 스토리 플랫폼
 date: 2023-01-02T10:00:00
 ---
 
-![Header Image](https://scontent-gmp1-1.xx.fbcdn.net/v/t39.30808-6/312520445_1502322260231757_275370048289133609_n.png?_nc_cat=111&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=CsWseTMa3RMQ7kNvgENcSnA&_nc_zt=23&_nc_ht=scontent-gmp1-1.xx&_nc_gid=ApWY0PoLz61PtaOXktUnCin&oh=00_AYAr1XQqZB3tfMaGa_KEiqexT8fPczOc0InXlxIZj__3jw&oe=672BC0D0)
+![Header Image](./assets/picka.png)
 
 # Key Features
 
