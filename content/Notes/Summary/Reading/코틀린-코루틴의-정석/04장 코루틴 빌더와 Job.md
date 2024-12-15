@@ -4,6 +4,7 @@ description: 코루틴을 처리하는 방식에 대해 다룹니다. 코루틴�
 date: 2024-08-12T21:00:00
 draft: false
 noindex: false
+tags: ["Kotlin", "Coroutine"]
 ---
 
 # 1. 주요 개념 정리

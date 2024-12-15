@@ -4,6 +4,7 @@ description: "`CoroutineDispatcher` 객체의 역할과 미리 정의된 디스�
 date: 2024-08-09 10:00:00 +0900
 draft: false
 noindex: false
+tags: ["Kotlin", "Coroutine"]
 aliases:
   - CoroutineDispatcher
 ---

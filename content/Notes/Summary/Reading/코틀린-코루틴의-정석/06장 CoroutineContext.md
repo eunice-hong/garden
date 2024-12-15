@@ -4,6 +4,7 @@ description: 코루틴의 실행 환경을 설정하고 관리하는 인터페�
 date: 2024-09-01 17:05:00 +0900
 draft: false
 noindex: false
+tags: ["Kotlin", "Coroutine"]
 aliases:
   - CoroutineContext
 ---

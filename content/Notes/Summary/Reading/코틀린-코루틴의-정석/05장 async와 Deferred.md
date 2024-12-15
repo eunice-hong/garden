@@ -4,6 +4,7 @@ description: "코루틴을 사용할 때 결과값을 받는 방법을 알아봅
 date: 2024-09-01 10:00:00 +0900
 draft: false
 noindex: false
+tags: ["Kotlin", "Coroutine"]
 ---
 
 ## 1. 주요 개념 정리
