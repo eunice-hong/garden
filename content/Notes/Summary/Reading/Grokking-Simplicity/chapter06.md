@@ -163,6 +163,8 @@ void main() {
 
 ## copy-on-write 원칙
 
+^9cc06c
+
 > [!NOTE] copy-on-write 단계
 > 1. 복사본 만들기
 > 2. 복사본 변경하기
