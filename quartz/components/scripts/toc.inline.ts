@@ -26,14 +26,19 @@ function toggleToc(this: HTMLElement) {
 }
 
 function setupToc() {
-  const toc = document.getElementById("toc")
-  if (toc) {
-    const collapsed = toc.classList.contains("collapsed")
-    const content = toc.nextElementSibling as HTMLElement | undefined
+  const tocButtons = document.getElementsByClassName("toc-button")
+  Array.from(tocButtons).forEach((tocButton) => {
+    const collapsed = tocButton.classList.contains("collapsed")
+    const content = tocButton.nextElementSibling as HTMLElement | undefined
     if (!content) return
-    toc.addEventListener("click", toggleToc)
-    window.addCleanup(() => toc.removeEventListener("click", toggleToc))
-  }
+    
+    // Set initial state based on collapsed status
+    tocButton.setAttribute("aria-expanded", (!collapsed).toString())
+    content.classList.toggle("collapsed", collapsed)
+    
+    tocButton.addEventListener("click", toggleToc)
+    window.addCleanup(() => tocButton.removeEventListener("click", toggleToc))
+  })
 }
 
 window.addEventListener("resize", setupToc)

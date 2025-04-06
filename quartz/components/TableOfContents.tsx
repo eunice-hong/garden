@@ -29,7 +29,7 @@ const TableOfContents: QuartzComponent = ({
       <button
         type="button"
         id="toc"
-        class={fileData.collapseToc ? "collapsed" : ""}
+        class={`toc-button ${fileData.collapseToc ? "collapsed" : ""}`}
         aria-controls="toc-content"
         aria-expanded={!fileData.collapseToc}
       >
