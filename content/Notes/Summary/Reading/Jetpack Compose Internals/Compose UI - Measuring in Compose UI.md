@@ -573,13 +573,10 @@ val childConstraints = Constraints(
 > - Compose의 레이아웃 및 측정 시스템을 미리 실행하여 애니메이션 대상의 위치와 크기를 예측할 수 있게 해주는 레이아웃입니다.
 > - 주로 shared element transitions, 레이아웃 전환 애니메이션, morph animation 등에 사용됩니다.
 
-## **예시 및 소개**
-
-
-![@Doris Liu|LookaheadLayout Animation Example](https://x.com/doris4lt/status/1531364543305175041)
+## 예시 및 소개
 
   
-Doris Liu의 트윗 예시에서는 상하 단일 컬럼에서 2열 레이아웃으로 전환 시, 자연스러운 애니메이션이 적용된 화면이 등장합니다.
+[Doris Liu의 트윗 예시](https://x.com/doris4lt/status/1531364543305175041)에서는 상하 단일 컬럼에서 2열 레이아웃으로 전환 시, 자연스러운 애니메이션이 적용된 화면이 등장합니다.
 
 이는 LookaheadLayout을 사용하여 **미리 측정된 크기와 위치**를 기반으로 애니메이션을 적용한 결과입니다.
 
