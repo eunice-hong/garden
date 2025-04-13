@@ -32,7 +32,7 @@ graph LR
 ## 계층 구조
 
 ```mermaid
-graph TD
+graph LR
   Runtime["🧠 Compose Runtime"]
   AbstractApplier["🧱 AbstractApplier<br>(공통 기능 제공)"]
   UiApplier["🎨 UiApplier<br>(Android UI용 - LayoutNode)"]
@@ -81,8 +81,11 @@ Column {
     Text("Some more conditional text")
   }
 }
+```
+
 
 `condition`이 바뀌면, Applier는 다음과 같은 호출 순서를 따릅니다:
+
 1. down(Column)
 2. down(Row)
 3. 자식 Text 삭제/삽입
@@ -140,45 +143,45 @@ graph TD
 - 그러나 벡터 그래픽에서는 **알림 전파가 불필요**하여 전략 간 성능 차이 없음
 
 
-### 여러 Applier가 동시에 사용되는 예
-- LayoutNode로 구성된 루트 Composition과
-- VNode로 구성된 Subcomposition이 함께 존재할 경우
-- 둘의 Applier가 **동시에 사용되어 전체 UI 트리를 materialize**
+❓ **여러 Applier가 동시에 사용될 수 있을까?**
 
-# LayoutNode Materialization
-
-- UiApplier는 Compose Runtime과 실제 UI(LayoutNode)를 연결해주는 **플랫폼별 물리화 도구**
-- LayoutNode는 플랫폼 독립적인 노드이며, Owner를 통해 Android View에 연결됨
-- **attach + remeasure = 화면에 노드가 보이도록 만드는 핵심 과정**
+<em><b>Yes</b></em> , LayoutNode로 구성된 루트 Composition과 VNode로 구성된 Subcomposition이 함께 존재할 경우, 둘의 Applier가 동시에 사용되어 전체 UI 트리를 materialize한다.
 
 ## UiApplier의 역할
 
+- UiApplier는 Compose Runtime과 실제 UI(LayoutNode)를 연결해주는 **플랫폼별 물리화 도구
+- LayoutNode는 플랫폼 독립적인 노드이며, Owner를 통해 Android View에 연결됨
 - `AbstractApplier<LayoutNode>`를 상속하여 **노드 삽입/삭제/이동을 실제로 처리**함
-- `insertTopDown()`은 무시되고, `insertBottomUp()`만 사용됨 → 즉 **트리를 하향(top-down)이 아닌 상향(bottom-up)** 방식으로 구성함
+- `insertTopDown()`은 무시되고, `insertBottomUp()`만 사용됨 
+  → 즉 **트리를 하향(top-down)이 아닌 상향(bottom-up)** 방식으로 구성함
 - 각 노드 작업은 `current`(현재 방문 중인 노드)에 위임됨
 
-## LayoutNode 삽입: insertAt
+### LayoutNode 삽입: insertAt
 
 ```kotlin
 internal fun insertAt(index: Int, instance: LayoutNode)
 ```
+
 - 부모가 이미 있거나, owner가 있으면 예외 발생
 - 자식 리스트 _foldedChildren에 추가
 - foldedParent 설정 → 부모-자식 연결
 
-## 노드 연결: attach(owner)
+### 노드 연결: attach(owner)
+
 - 동일한 Owner를 강제 → 트리 전체가 같은 View 기반 구조를 공유하게 함
 - 재귀적으로 자식 노드까지 attach
 - Semantics가 있으면 onSemanticsChange() 호출
 - attach 후 requestRemeasure()로 측정 요청 → **실제로 화면에 반영되는 핵심 단계**
 
-## Owner의 역할
+### Owner의 역할
+
 - LayoutNode 트리와 실제 플랫폼 View(Android View) 사이의 **연결자**
 - 노드가 추가/삭제되면 invalidate, requestLayout 등을 통해 View에게 갱신 요청
 - **View 시스템을 통해 변경 사항을 화면에 반영**함
 
 
-## Z-Index 및 정렬
+### Z-Index 및 정렬
+
 - 삽입된 노드는 Z 인덱스에 따라 정렬됨
 - 정렬 리스트가 무효화되면 다시 정렬 → View 위/아래에 위치하는 순서에 영향  
 
@@ -198,7 +201,6 @@ Layout(
   measurePolicy = { measurables, constraints -> ... }
 )
 ```
-
   
 ## 기본 구조
 
@@ -394,7 +396,7 @@ private data class BoxMeasurePolicy(
 
 ## 참고사항
 
-- ReusableComposeNode 내부에서 measurePolicy는 update = { set(...) } 구문을 통해 노드에 주입됨
+- [[Compose UI - Composition and Subcomposition#ReusableComposeNode 동작 과정|ReusableComposeNode]] 내부에서 measurePolicy는 update = { set(...) } 구문을 통해 노드에 주입됨
 - LayoutNode 자체는 policy에 대해 아무것도 모르고, 단지 위임받아 실행할 뿐
 
 
@@ -574,18 +576,15 @@ val childConstraints = Constraints(
 ## **예시 및 소개**
 
 
-![](https://x.com/doris4lt/status/1531364543305175041)
+![@Doris Liu|LookaheadLayout Animation Example](https://x.com/doris4lt/status/1531364543305175041)
 
   
 Doris Liu의 트윗 예시에서는 상하 단일 컬럼에서 2열 레이아웃으로 전환 시, 자연스러운 애니메이션이 적용된 화면이 등장합니다.
 
-SmartBox, TvShowApp 등의 Composable에서 상태 변화에 따라 Row/Column 또는 다른 화면으로 전환됩니다.
-
-  
-
-// SmartBox 예시
+이는 LookaheadLayout을 사용하여 **미리 측정된 크기와 위치**를 기반으로 애니메이션을 적용한 결과입니다.
 
 ## 핵심 아이디어
+
 LookaheadLayout은 하위 노드의 미래 위치와 크기를 미리 계산합니다.  
 이 정보는 이후 애니메이션 적용에 사용되며, 해당 정보를 통해 자연스러운 전환을 구현할 수 있습니다.  
 movableContentOf, movableContentWithReceiverOf 와 결합 시 상태를 유지한 채 요소를 재배치할 수 있습니다.
@@ -608,7 +607,41 @@ LookaheadLayoutScope를 통해 다음과 같은 modifier를 제공합니다:
 - Modifier.intermediateLayout: pre-calculated size를 이용한 임시 배치
 - Modifier.onPlaced: 부모 기준으로 배치 좌표를 얻고 상태 저장
 
-// animateConstraints modifier 구현 예시  
+```kotlin
+fun Modifier.animateConstraints(lookaheadScope: LookaheadLayoutScope) =
+    composed {
+        var sizeAnimation: Animatable<IntSize, AnimationVector2D>? by remember {
+            mutableStateOf(null)
+        }
+
+        var targetSize: IntSize? by remember { mutableStateOf(null) }
+
+        LaunchedEffect(Unit) {
+            snapshotFlow { targetSize }.collect { target ->
+                if (target != null && target != sizeAnimation?.targetValue) {
+                    sizeAnimation?.run {
+                        launch { animateTo(target) }
+                    } ?: Animatable(target, IntSize.VectorConverter).let {
+                        sizeAnimation = it
+                    }
+                }
+            }
+        }
+
+        with(lookaheadScope) {
+            this@composed.intermediateLayout { measurable, _, lookaheadSize ->
+                targetSize = lookaheadSize
+                val (width, height) = sizeAnimation?.value ?: lookaheadSize
+                val animatedConstraints = Constraints.fixed(width, height)
+
+                val placeable = measurable.measure(animatedConstraints)
+                layout(placeable.width, placeable.height) {
+                    placeable.place(0, 0)
+                }
+            }
+        }
+    }
+```
 
 
 ## 커스텀 애니메이션 구현 예시
@@ -617,30 +650,174 @@ LookaheadLayoutScope를 통해 다음과 같은 modifier를 제공합니다:
 pre-calculated lookahead size를 기반으로 크기를 부드럽게 변경합니다.  
 snapshotFlow로 상태 추적 후 애니메이션을 적용합니다.
 
-// animateConstraints 전체 구현  
+
+```kotlin
+LookaheadLayout(
+    content = {
+        var fullWidth by remember { mutableStateOf(false) }
+
+        Row(
+            (if (fullWidth) Modifier.fillMaxWidth() else Modifier.width(100.dp))
+                .height(200.dp)
+                .animateConstraints(this@LookaheadLayout) // ✅
+                .clickable { fullWidth = !fullWidth }
+        ) {
+            Box(
+                Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+                    .background(Color.Red)
+            )
+            Box(
+                Modifier
+                    .weight(2f)
+                    .fillMaxHeight()
+                    .background(Color.Yellow)
+            )
+        }
+    }
+) { measurables, constraints ->
+    val placeables = measurables.map { it.measure(constraints) }
+    val maxWidth: Int = placeables.maxOf { it.width }
+    val maxHeight = placeables.maxOf { it.height }
+
+    layout(maxWidth, maxHeight) {
+        placeables.forEach {
+            it.place(0, 0)
+        }
+    }
+}
+```
 
 ### 위치 애니메이션 (animatePlacementInScope)
 onPlaced에서 얻은 위치 정보로 좌표 기반 애니메이션을 적용합니다.  
 실제 배치는 intermediateLayout에서 실행됩니다.
 
-// animatePlacementInScope 전체 구현  
+```kotlin
+fun Modifier.animatePlacementInScope(lookaheadScope: LookaheadLayoutScope) =
+    composed {
+        var offsetAnimation: Animatable<IntOffset, AnimationVector2D>? by remember {
+            mutableStateOf(null)
+        }
+
+        var placementOffset: IntOffset by remember { mutableStateOf(IntOffset.Zero) }
+        var targetOffset: IntOffset? by remember { mutableStateOf(null) }
+
+        LaunchedEffect(Unit) {
+            snapshotFlow { targetOffset }
+                .collect { target ->
+                    if (target != null && target != offsetAnimation?.targetValue) {
+                        offsetAnimation?.run {
+                            launch { animateTo(target) }
+                        } ?: Animatable(target, IntOffset.VectorConverter).let {
+                            offsetAnimation = it
+                        }
+                    }
+                }
+        }
+
+        with(lookaheadScope) {
+            this@composed
+                .onPlaced { lookaheadScopeCoordinates, layoutCoordinates ->
+                    // the *target* position of this modifier in local coordinates
+                    targetOffset = lookaheadScopeCoordinates
+                        .localLookaheadPositionOf(layoutCoordinates)
+                        .round()
+
+                    // the *current* position of this modifier in local coordinates
+                    placementOffset = lookaheadScopeCoordinates
+                        .localPositionOf(layoutCoordinates, Offset.Zero)
+                        .round()
+                }
+                .intermediateLayout { measurable, constraints, _ ->
+                    val placeable = measurable.measure(constraints)
+                    layout(placeable.width, placeable.height) {
+                        val (x, y) = offsetAnimation?.run { value - placementOffset }
+                            ?: (targetOffset!! - placementOffset)
+                        placeable.place(x, y)
+                    }
+                }
+        }
+    }
+```
 
 ## 내부 동작 구조
 
 ### 측정 단계 (Measure Pass)
+
 lookahead 루트 노드부터 측정 시작  
 LookaheadPassDelegate#measure() 호출하여 lookahead 측정  
 일반 측정과 유사하지만 lookaheadDelegate를 사용
 
-// [Diagram: Lookahead measure pass]
+```mermaid
+flowchart TD
+  A["LayoutNode.measure(constraints)"] --> B{Is Lookahead root?}
+
+  B -- Yes --> C[LookaheadMeasure]
+  C --> D["lookaheadPassDelegate.measure()"]
+  D --> E["LayoutNodeWrapper<br/>lookaheadDelegate.measure()"]
+  E --> F[LookaheadMeasure Children]
+
+  F --> F1["LayoutNodeWrapper<br/>lookaheadDelegate.measure()"]
+  F --> F2["LayoutNodeWrapper<br/>lookaheadDelegate.measure()"]
+  F --> F3["LayoutNodeWrapper<br/>lookaheadDelegate.measure()"]
+
+  B -- No --> G[Measure]
+  C --> G
+
+  G --> H["measurePassDelegate.measure(...)"]
+  H --> I["LayoutNodeWrapper.measure(...)"]
+  I --> J[Measure Children]
+
+  J --> J1["LayoutNodeWrapper.measure(...)"]
+  J --> J2["LayoutNodeWrapper.measure(...)"]
+  J --> J3["LayoutNodeWrapper.measure(...)"]
+
+  J3 --> K[Return MeasureResult]
+
+  %% 스타일
+  style B stroke:#ff9900,stroke-width:2px
+  style C fill:#ffcc99,stroke:#ff9900,stroke-width:2px
+  style G fill:#d0e6ff,stroke:#3399ff,stroke-width:2px
+  style K fill:#ffffff,stroke:#777,stroke-dasharray: 4 2
+```
 
 ### 배치 단계 (Layout Pass)
+
 일반 레이아웃 pass와 동일하지만 placeAt(...) 호출을 통해 위치 지정  
 lookahead 위치는 orange block에서 처리됨
 
-// [Diagram: Lookahead layout pass]
+```mermaid
+flowchart TD
+  A["measurePassDelegate<br>.placeAt(...)"] --> B{Is Lookahead<br>root?}
+
+  B -- Yes --> C[Lookahead Place]
+  C --> D["lookaheadPassDelegate<br>.placeAt(...)"]
+  D --> E["LayoutNodeWrapper<br>lookaheadDelegate.placeAt(...)"]
+  E --> F[Place Children]
+
+  F --> F1["LayoutNodeWrapper<br>lookaheadDelegate.placeAt(...)"]
+  F --> F2["LayoutNodeWrapper<br>lookaheadDelegate.placeAt(...)"]
+  F --> F3["LayoutNodeWrapper<br>lookaheadDelegate.placeAt(...)"]
+
+  B -- No --> G[Place]
+  C --> G
+
+  G --> H["measurePassDelegate.placeAt(...)"]
+  H --> I["LayoutNodeWrapper.placeAt(...)"]
+  I --> J[Place Children]
+
+  J --> J1["LayoutNodeWrapper.placeAt(...)"]
+  J --> J2["LayoutNodeWrapper.placeAt(...)"]
+  J --> J3["LayoutNodeWrapper.placeAt(...)"]
+
+  style B stroke:#ff9900,stroke-width:2px
+  style C fill:#ffcc99,stroke:#ff9900,stroke-width:2px
+  style G fill:#d0e6ff,stroke:#3399ff,stroke-width:2px
+```
 
 ## 최적화 및 유의사항
+
 - 변화 없는 노드는 invalidate 되지 않도록 범위 최소화
 - 루트가 아닌 노드엔 일반 measure/layout pass 사용
 - 애니메이션 시 하나의 LookaheadScope가 계층적으로 공유됨

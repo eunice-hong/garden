@@ -10,6 +10,24 @@ aliases:
   - Compose UI
 ---
 
+# Composition vs Subcomposition
+
+- [[#Composition|Composition]]은 기본 단위로 항상 사용되며,
+- [[#Subcomposition|Subcomposition]] 은 특별한 상황에서 **동적으로 자식 UI를 제어하기 위해 사용하는 별도 Composition 단위**입니다.
+
+| 항목 | Composition | Subcomposition |
+|------|-------------|----------------|
+| **정의** | Composable 함수 실행 결과를 담는 **기본 Composition 단위** | 특정 목적을 가진 **동적/지연 Composition 단위** |
+| **생성 방식** | `setContent`, 일반 Composable 내부에서 자동 생성 | `subcompose()`를 통해 **명시적 생성** |
+| **생성 시점** | Composition 트리 구성 시 **즉시 실행** | **필요 시점까지 지연** 가능 (예: 레이아웃 계산 이후) |
+| **노드 트리 연결** | 현재 Composition 트리에 노드들이 바로 연결됨 | **별도 노드 트리로 구성 가능** |
+| **CompositionContext** | 상위 Composition의 Context를 **자동 상속** | **명시적으로 Context 설정 필요** |
+| **Recomposition 처리** | 부모 Composition의 상태 변화에 따라 재구성됨 | `forceRecomposeChildren()` 등으로 **독립적 재구성 가능** |
+| **사용 목적** | 기본적인 UI 구조 구성 | 자식 UI를 **상태/측정값/조건 기반으로 동적 구성** |
+| **사용 예시** | `Column`, `Box`, 일반 Composable들 | `SubcomposeLayout`, `LazyColumn`, `Popup`, `Dialog`, `BoxWithConstraints` 등 |
+| **slot table** | 루트 Composition 단위로 **독립적으로 존재** | 보통 **별도의 slot table 사용**, runtime이 따로 관리 |
+| **구조 유연성** | 고정된 자식 구조 | **동적 구성, 유연한 배치** 가능 |
+
 # Composition
 
 - `setContent` → 루트 Composition 생성 → ReusableComposeNode로 노드 구성
@@ -38,7 +56,7 @@ aliases:
 아래는 `Layout()` 컴포저블 내부에서 `LayoutNode`가 어떻게 생성되고 설정되는지를 보여주는 예시입니다:
 
 
-### 예시: Layout 
+### ReusableComposeNode 동작 과정
 
 ```kotlin
 @Composable
@@ -65,7 +83,6 @@ inline fun Layout(
 ```
 [Layout.kt](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:compose/ui/ui/src/commonMain/kotlin/androidx/compose/ui/layout/Layout.kt)
 
-### ReusableComposeNode 동작 과정
 1. **노드 생성**: factory 함수로 생성
 2. **초기화**: `update` 람다로 초기화
 3. **Replaceable Group 생성**:
@@ -80,10 +97,6 @@ inline fun Layout(
 - 성능 최적화를 위한 **변화 감지 메커니즘**
 
 # Subcomposition
-
-
-- Composition은 루트 레벨뿐만 아니라, **Composable 트리의 더 깊은 위치**에서도 생성될 수 있음
-- 이 경우 해당 Composition은 **부모 Composition과 연결**되며, 이를 **Subcomposition(하위 Composition)** 이라고 부름
 
 ### 구조
 
@@ -178,21 +191,3 @@ fun SubcomposeLayout(
 }
 ```
 [SubcomposeLayout.kt](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:compose/ui/ui/src/commonMain/kotlin/androidx/compose/ui/layout/SubcomposeLayout.kt;l=122?q=SubcomposeLayout)
-
-# Composition vs Subcomposition
-
-- `Composition`은 기본 단위로 항상 사용되며,
-- `Subcomposition`은 특별한 상황에서 **동적으로 자식 UI를 제어하기 위해 사용하는 별도 Composition 단위**입니다.
-
-| 항목 | Composition | Subcomposition |
-|------|-------------|----------------|
-| **정의** | Composable 함수 실행 결과를 담는 **기본 Composition 단위** | 특정 목적을 가진 **동적/지연 Composition 단위** |
-| **생성 방식** | `setContent`, 일반 Composable 내부에서 자동 생성 | `subcompose()`를 통해 **명시적 생성** |
-| **생성 시점** | Composition 트리 구성 시 **즉시 실행** | **필요 시점까지 지연** 가능 (예: 레이아웃 계산 이후) |
-| **노드 트리 연결** | 현재 Composition 트리에 노드들이 바로 연결됨 | **별도 노드 트리로 구성 가능** |
-| **CompositionContext** | 상위 Composition의 Context를 **자동 상속** | **명시적으로 Context 설정 필요** |
-| **Recomposition 처리** | 부모 Composition의 상태 변화에 따라 재구성됨 | `forceRecomposeChildren()` 등으로 **독립적 재구성 가능** |
-| **사용 목적** | 기본적인 UI 구조 구성 | 자식 UI를 **상태/측정값/조건 기반으로 동적 구성** |
-| **사용 예시** | `Column`, `Box`, 일반 Composable들 | `SubcomposeLayout`, `LazyColumn`, `Popup`, `Dialog`, `BoxWithConstraints` 등 |
-| **slot table** | 루트 Composition 단위로 **독립적으로 존재** | 보통 **별도의 slot table 사용**, runtime이 따로 관리 |
-| **구조 유연성** | 고정된 자식 구조 | **동적 구성, 유연한 배치** 가능 |
