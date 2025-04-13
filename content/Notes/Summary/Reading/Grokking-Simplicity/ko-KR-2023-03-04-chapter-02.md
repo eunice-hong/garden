@@ -2,7 +2,7 @@
 title: CHAPTER 2 현실에서의 함수형 사고
 date: 2023-03-04 23:15:00 +0900
 tags: ["FP"]
-description: Markdown summary with different options
+draft: false
 ---
 
 Chapter 2 에서는 토니의 피자가게 이야기를 통해 현실에서 함수형 사고를 어떻게 적용할 수 있는지 알아보겠습니다.

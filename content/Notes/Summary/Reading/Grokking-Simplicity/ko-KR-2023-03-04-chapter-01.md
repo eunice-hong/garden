@@ -2,7 +2,7 @@
 title: CHAPTER 1 쏙쏙 들어오는 함수형 코딩에 오신 것을 환영합니다.
 date: 2023-03-04 00:17:47 +0900
 tags: ["FP"]
-description: Markdown summary with different options
+draft: false
 ---
 
 > 함수형 프로그래밍이란 수학 함수를 사용하여 부수 효과를 최소화하는 프로그래밍 패러다임입니다.

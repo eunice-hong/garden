@@ -2,6 +2,7 @@
 title: CHAPTER 2 Functional thinking in action
 date: 2023-03-18 20:03:00 +0900
 tags: ["FP"]
+draft: false
 description: Markdown summary with different options
 ---
 
