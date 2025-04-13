@@ -33,8 +33,8 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Gothic A1",
-        body: "Gothic A1",
+        header: "Noto Sans KR",
+        body: "Noto Sans KR",
         code: "IBM Plex Sans KR",
       },
       colors: {
