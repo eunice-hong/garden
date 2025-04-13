@@ -1,7 +1,7 @@
 ---
 title: Compose UI - Measuring in Compose UI
 description: Compose UI의 레이아웃 시스템은 측정 → 배치 → 그리기의 단계를 따릅니다. 각 LayoutNode는 부모의 제약 조건 하에서 크기를 측정하고, 위치를 결정합니다.
-date: 2025-04-06T21:03:00
+date: 2025-04-06T21:02:00
 draft: false
 noindex: false
 tags:
@@ -56,6 +56,8 @@ graph TD
 	- UiApplier → LayoutNode
 	- VectorApplier → VNode
 
+
+
 ## AbstractApplier의 작동 방식
 
 - down(node) 호출 시:
@@ -79,7 +81,6 @@ Column {
     Text("Some more conditional text")
   }
 }
-```
 
 `condition`이 바뀌면, Applier는 다음과 같은 호출 순서를 따릅니다:
 1. down(Column)
@@ -564,3 +565,93 @@ val childConstraints = Constraints(
 
 
 
+# LookaheadLayout
+
+> [!abstract] LookaheadLayout
+> - Compose의 레이아웃 및 측정 시스템을 미리 실행하여 애니메이션 대상의 위치와 크기를 예측할 수 있게 해주는 레이아웃입니다.
+> - 주로 shared element transitions, 레이아웃 전환 애니메이션, morph animation 등에 사용됩니다.
+
+## **예시 및 소개**
+
+
+![](https://x.com/doris4lt/status/1531364543305175041)
+
+  
+Doris Liu의 트윗 예시에서는 상하 단일 컬럼에서 2열 레이아웃으로 전환 시, 자연스러운 애니메이션이 적용된 화면이 등장합니다.
+
+SmartBox, TvShowApp 등의 Composable에서 상태 변화에 따라 Row/Column 또는 다른 화면으로 전환됩니다.
+
+  
+
+// SmartBox 예시
+
+## 핵심 아이디어
+LookaheadLayout은 하위 노드의 미래 위치와 크기를 미리 계산합니다.  
+이 정보는 이후 애니메이션 적용에 사용되며, 해당 정보를 통해 자연스러운 전환을 구현할 수 있습니다.  
+movableContentOf, movableContentWithReceiverOf 와 결합 시 상태를 유지한 채 요소를 재배치할 수 있습니다.
+
+## Pre-calculation 방식 비교
+
+| 방식              | 설명 |
+|------------------|------|
+| SubcomposeLayout | 지연된 컴포지션을 통해 공간을 판단하지만 복잡하고 일반 사용은 권장되지 않음 |
+| Intrinsics        | 수학적으로 미리 크기 계산. LookaheadLayout과 비슷하지만 수학적 예측 기반 |
+| LookaheadLayout  | 실측 측정과 배치를 선행 실행. 상태 변화에 따라 lookahead pass 발생 |
+
+## 작동 방식
+
+LookaheadLayout은 두 번의 측정과 배치 과정을 거칩니다:
+1. Lookahead pass: 변경 감지 시 미리 측정 및 배치 실행 (애니메이션용)
+2. 정상 pass: 실제 측정 및 배치
+
+LookaheadLayoutScope를 통해 다음과 같은 modifier를 제공합니다:
+- Modifier.intermediateLayout: pre-calculated size를 이용한 임시 배치
+- Modifier.onPlaced: 부모 기준으로 배치 좌표를 얻고 상태 저장
+
+// animateConstraints modifier 구현 예시  
+
+
+## 커스텀 애니메이션 구현 예시
+
+### 크기 애니메이션 (animateConstraints)
+pre-calculated lookahead size를 기반으로 크기를 부드럽게 변경합니다.  
+snapshotFlow로 상태 추적 후 애니메이션을 적용합니다.
+
+// animateConstraints 전체 구현  
+
+### 위치 애니메이션 (animatePlacementInScope)
+onPlaced에서 얻은 위치 정보로 좌표 기반 애니메이션을 적용합니다.  
+실제 배치는 intermediateLayout에서 실행됩니다.
+
+// animatePlacementInScope 전체 구현  
+
+## 내부 동작 구조
+
+### 측정 단계 (Measure Pass)
+lookahead 루트 노드부터 측정 시작  
+LookaheadPassDelegate#measure() 호출하여 lookahead 측정  
+일반 측정과 유사하지만 lookaheadDelegate를 사용
+
+// [Diagram: Lookahead measure pass]
+
+### 배치 단계 (Layout Pass)
+일반 레이아웃 pass와 동일하지만 placeAt(...) 호출을 통해 위치 지정  
+lookahead 위치는 orange block에서 처리됨
+
+// [Diagram: Lookahead layout pass]
+
+## 최적화 및 유의사항
+- 변화 없는 노드는 invalidate 되지 않도록 범위 최소화
+- 루트가 아닌 노드엔 일반 measure/layout pass 사용
+- 애니메이션 시 하나의 LookaheadScope가 계층적으로 공유됨
+- Compose 1.3부터 정식 릴리즈됨
+
+## 정리
+
+| 기능                  | 설명 |
+|-----------------------|------|
+| LookaheadLayout       | 미리 측정/배치를 통해 애니메이션 타겟 정보 획득 |
+| intermediateLayout    | 중간 크기 기반 배치 지정 가능 |
+| onPlaced              | 부모 기준 좌표로 배치 위치 계산 가능 |
+| movableContentOf      | 상태를 유지한 채 Composable 재배치 가능 |
+| 사용 목적             | shared element, 화면 전환, layout morph 등 |
