@@ -20,7 +20,11 @@ const config: QuartzConfig = {
     baseUrl: "blog.eunice-hong.com",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
-    generateSocialImages: false,
+    generateSocialImages: {
+      colorScheme: "darkMode",
+      width: 1200,
+      height: 630,
+    },
     passProtected: {
       enabled: true,
       iteration: 2e6,
