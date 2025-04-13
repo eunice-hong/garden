@@ -1,5 +1,6 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
+import { koreanSocialImage } from "./quartz/util/customOg"
 
 /**
  * Quartz 4.0 Configuration
@@ -24,6 +25,7 @@ const config: QuartzConfig = {
       colorScheme: "darkMode",
       width: 1200,
       height: 630,
+      imageStructure: koreanSocialImage,
     },
     passProtected: {
       enabled: true,

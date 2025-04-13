@@ -7,6 +7,7 @@ import satori, { SatoriOptions } from "satori"
 import fs from "fs"
 import sharp from "sharp"
 import { ImageOptions, SocialImageOptions, getSatoriFont, defaultImage } from "../util/og"
+import { getKoreanSatoriFont } from "../util/customOg"
 import { unescapeHTML } from "../util/escape"
 
 /**
@@ -65,7 +66,13 @@ export default (() => {
 
     // Memoize google fonts
     if (!fontsPromise && cfg.generateSocialImages) {
-      fontsPromise = getSatoriFont(cfg.theme.typography.header, cfg.theme.typography.body)
+      // Use Korean font loading for Noto Sans KR
+      if (cfg.theme.typography.header.includes("Noto Sans KR") || 
+          cfg.theme.typography.body.includes("Noto Sans KR")) {
+        fontsPromise = getKoreanSatoriFont(cfg.theme.typography.header, cfg.theme.typography.body)
+      } else {
+        fontsPromise = getSatoriFont(cfg.theme.typography.header, cfg.theme.typography.body)
+      }
     }
 
     const slug = fileData.filePath
