@@ -2,6 +2,7 @@
 title: 7가지 동시성 모델
 description: 프로그래머라면 알아야할 미래를 품은 '7가지 동시성 모델' 책을 읽고 정리하는 공간입니다.
 tags: ["Antilibrary", "Concurrency"]
+date: 2024-12-15T20:33:00
 draft: false
 noindex: true
 ---
