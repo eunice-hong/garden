@@ -10,7 +10,7 @@ aliases:
   - Composer
 ---
 > [!abstract] Composer
-> [[The Compose Compiler|컴파일 단계]]에서 주입된 `$composer`는 Composable 함수를 Compose Runtime에 연결하는 역할을 합니다. 이는 트리의 구조를 구성하고 변경사항을 방출하는 중재자 역할을 합니다 [oai_citation:0‡Jetpack compose internals.pdf](file-service://file-EHh5YEhAXriKyW5chQQKnM).
+> [[The Compose Compiler|컴파일 단계]]에서 주입된 `$composer`는 Composable 함수를 Compose Runtime에 연결하는 역할을 합니다. 이는 트리의 구조를 구성하고 변경사항을 방출하는 중재자 역할을 합니다 
 
 # Composer의 데이터 처리
 
@@ -75,15 +75,15 @@ remember {
 
 이러한 구조는 추후 remembered 값이 필요 없어질 때 forget() 처리에도 사용됩니다.
 
-# 재구성 범위
+# RecomposeScope
 
-RecomposeScope는 Composable 내의 특정 영역이 독립적으로 재구성될 수 있도록 모델링한 것입니다. 이는 재시작 가능한 그룹이 생성될 때마다 `Composer`가 RecomposeScope를 만들고, 이를 `currentRecomposeScope`로 설정함으로써 구성됩니다. 해당 scope는 수동으로 무효화할 수 있으며, 다음과 같이 사용할 수 있습니다:
+RecomposeScope는 **Composable 내의 특정 영역이 독립적으로 재구성될 수 있도록 모델링한 것**입니다. 이는 재시작 가능한 그룹이 생성될 때마다 `Composer`가 RecomposeScope를 만들고, 이를 `currentRecomposeScope`로 설정함으로써 구성됩니다. 해당 scope는 수동으로 무효화할 수 있으며, 다음과 같이 사용할 수 있습니다:
 
 ```kotlin
 currentRecomposeScope.invalidate()
 ```
 
-이 scope는 상태의 읽기가 발생했을 때만 used 상태가 되며, 이때 비로소 endRestartGroup()?.updateScope {} 블록이 유효한 recomposition 블록으로 활성화됩니다 .
+이 scope는 상태의 읽기가 발생했을 때만 used 상태가 되며, 이때 비로소 `endRestartGroup()?.updateScope {}` 블록이 유효한 recomposition 블록으로 활성화됩니다 .
 
 # Composer와 사이드 이펙트
 

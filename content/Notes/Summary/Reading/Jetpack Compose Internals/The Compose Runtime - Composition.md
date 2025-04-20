@@ -175,4 +175,4 @@ graph TD
 
 - 삽입도 재사용도 하지 않음
 - 무효화된 provider 없음
-- 현재 `RecomposeScope`에서 재구성이 요구되지 않음
+- 현재 [[The Compose Runtime - Composer#RecomposeScope|RecomposeScope]]에서 재구성이 요구되지 않음
