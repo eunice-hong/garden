@@ -7,7 +7,6 @@ noindex: false
 tags:
   - JetpackCompose
 ---
-
 # Compose runtime vs Compose UI
 
 - **Compose UI**는 Android용 새로운 UI 툴킷으로, LayoutNode 트리 구조를 기반으로 화면에 요소를 렌더링한다.
@@ -27,29 +26,27 @@ tags:
 
 JetBrains는 Kotlin Multiplatform을 기반으로 Compose를 다양한 플랫폼에 확장하고 있다.
 
-## Compose for Desktop
+1. Compose for Desktop
+	- Android의 구현과 매우 유사하며, Skia 기반 렌더링 시스템을 사용
+	- Skia wrapper를 활용하여 Compose UI 전체 렌더링 레이어를 재사용
+	- 마우스 및 키보드 이벤트를 위한 시스템 확장
+2. Compose for iOS
+	- 역시 Skia를 렌더링 레이어로 사용
+	- Kotlin/Native 기반으로 JVM 로직을 이식하여 재사용
+3. Compose for Web
+	- HTML/CSS 기반으로 구성요소를 정의하며, 브라우저의 DOM을 직접 사용
+	- Compose compiler와 runtime은 그대로 사용하지만, UI 시스템은 Compose UI와 다름
+	- Kotlin WASM과 함께 Skia 기반 Compose Web도 시도 중
 
-- Android의 구현과 매우 유사하며, Skia 기반 렌더링 시스템을 사용
-- Skia wrapper를 활용하여 Compose UI 전체 렌더링 레이어를 재사용
-- 마우스 및 키보드 이벤트를 위한 시스템 확장
-## Compose for iOS (개발 중)
-
-- 역시 Skia를 렌더링 레이어로 사용
-- Kotlin/Native 기반으로 JVM 로직을 이식하여 재사용
-    
-## Compose for Web
-
-- HTML/CSS 기반으로 구성요소를 정의하며, 브라우저의 DOM을 직접 사용
-- Compose compiler와 runtime은 그대로 사용하지만, UI 시스템은 Compose UI와 다름
-- Kotlin WASM과 함께 Skia 기반 Compose Web도 시도 중
-    
 ## 구조 요약
 
-```
-Compiler → Runtime → Compose UI → Android UI
-                       ↓
-                   Compose Web
-                   Compose Desktop
+```mermaid
+flowchart TD
+    Compiler --> Runtime
+    Runtime --> ComposeUI
+    ComposeUI --> AndroidUI
+    Runtime --> ComposeWeb
+    Runtime --> ComposeDesktop
 ```
 
 - 위 구조는 JetBrains의 Compose Multiplatform 아키텍처를 나타낸다.
@@ -70,7 +67,7 @@ Compiler → Runtime → Compose UI → Android UI
 
 ## 생성 방법
 
-```
+```kotlin
 fun Composition(
     applier: Applier<*>,
     parent: CompositionContext
@@ -87,16 +84,15 @@ fun Composition(
 - 예시: Cash App의 [Molecule](https://github.com/cashapp/molecule)
 
 ## 앞으로 다룰 내용
-  
 
 이후 예제에서는 **Compose UI 없이 Compose runtime만 사용하는 패턴**들을 다룬다:
 
 - 커스텀 트리를 사용해 벡터 그래픽 렌더링 (Compose UI 라이브러리)
 - Kotlin/JS에서 Compose를 활용해 브라우저 DOM 트리를 직접 다루는 예제
 
-# Composition of vector graphics
+## Composition of vector graphics
 
-## 개요
+### 개요
 
 
 Compose에서 벡터 렌더링은 Painter 추상화를 통해 이루어진다. 이는 기존 Android 시스템의 Drawable과 유사하다.
@@ -116,12 +112,12 @@ Image(
 ```
 
 - 위 예시는 rememberVectorPainter 내부에서 Group과 Path를 사용해 벡터 이미지를 구성하는 예다.
-## 주요 개념
+### 주요 개념
 
 - rememberVectorPainter 블록 내부의 Group, Path는 일반 UI 컴포저블과 달리 **별도의 composition** 안에서 작동한다.
 - 이 composition은 벡터 이미지를 구성하는 요소만 허용하며, 일반 UI 요소(Text, Image, Box 등)는 허용되지 않는다.
 - 그 결과, VectorPainter는 벡터 전용 트리를 만들고 이를 나중에 캔버스에 그린다.
-## 구조 시각화
+### 구조 시각화
 
 ```mermaid
 graph LR
@@ -139,41 +135,41 @@ graph LR
   Image --> Path
 ```
 
-## 검증과 안전성
+### 검증과 안전성
 
 - 컴파일러는 현재 시점에서 벡터 컴포저블 유효성 검사를 **런타임에** 수행한다.
 - 따라서 VectorPainter 내부에 잘못된 UI 요소를 넣으면, 컴파일은 통과하지만 실행 중 에러가 날 수 있다.
 - 향후 Compose 컴파일러에서 이를 컴파일 타임에 검증할 수 있도록 개선할 예정이라는 소문이 있다.
-## 기타 사항
+### 기타 사항
 
 - 이전 장들에서 다룬 **runtime**, **상태 관리**, **이펙트** 관련 개념은 벡터 composition에도 동일하게 적용된다.
 - 예를 들어, Transition API를 사용해 벡터 이미지에 애니메이션을 적용할 수 있다.
 
-## 예제
+### 예제
 
 - [VectorGraphicsDemo.kt](https://android.googlesource.com/platform/frameworks/support/+/refs/heads/androidx-main/compose/ui/ui-graphics/src/androidAndroidTest/kotlin/androidx/compose/ui/graphics/vector/VectorGraphicsDemo.kt)
 - [AnimatedVectorGraphicsDemo.kt](https://android.googlesource.com/platform/frameworks/support/+/refs/heads/androidx-main/compose/ui/ui-graphics/src/androidAndroidTest/kotlin/androidx/compose/ui/graphics/vector/AnimatedVectorGraphicsDemo.kt)
     
-### 1. Composition과 Recomposer
+#### 1. Composition과 Recomposer
 
 - Composition은 모든 composable 함수의 컨텍스트이며, SlotTable, Applier와 연결되어 있음.
 - Recomposer는 변경된 상태에 따라 recomposition을 트리거함.
 - 직접 Composition을 구성할 수도 있으며, 이 경우 Applier와 CompositionContext가 필요함.
-### 2. 벡터 그래픽 구성 (VectorPainter)
+#### 2. 벡터 그래픽 구성 (VectorPainter)
 
 - rememberVectorPainter 블록 내부에서는 Group, Path 등의 벡터 전용 composable 함수 사용.
 - 이들은 일반 UI와는 다른 Composition 안에서 동작하며, LayoutNode 대신 vector tree를 구성함.
-### 3. VNode 트리
+#### 3. VNode 트리
 
 - 벡터 이미지는 VNode 기반 트리 구조로 구성됨.
 - 주요 노드:
     - GroupComponent: 자식 노드를 갖고 transform 적용
     - PathComponent: path를 직접 그리는 leaf 노드
-### 4. ComposeNode와 VectorApplier
+#### 4. ComposeNode와 VectorApplier
 
 - ComposeNode는 벡터 트리에 노드를 삽입함.
 - VectorApplier는 VNode 간 연결을 담당하며, insertTopDown, remove, move 등의 연산을 구현.
-### 5. TopDown vs BottomUp 삽입 방식
+#### 5. TopDown vs BottomUp 삽입 방식
 
 - topDown: 부모부터 삽입하고 그다음 자식들을 삽입
 - bottomUp: 자식들을 모두 만든 후 부모에 한 번에 삽입
@@ -185,8 +181,6 @@ graph LR
 ## Integrating vector composition into Compose UI
 
 이 섹션은 Jetpack Compose 내부에서 벡터 그래픽을 어떻게 Compose UI에 통합하는지 설명합니다. 핵심은 VectorPainter 클래스 내부에서 독립적인 Composition을 유지하며 UI의 재구성과 연결시키는 방식입니다.
-
-
 
 ### 통합 흐름 요약
 
@@ -201,8 +195,6 @@ flowchart LR
 ```
 
 ### 주요 구성 요소 설명
-
-  
 
 #### 1. RenderVector()
 
@@ -223,10 +215,6 @@ internal fun RenderVector(content: @Composable () -> Unit) {
     }
 }
 ```
-
-  
-
-
 
 #### 2. composeVector()
 
@@ -281,12 +269,7 @@ override fun DrawScope.onDraw() {
 4. onDraw()는 실제로 벡터 트리를 Canvas에 렌더링함
     
 
-이 구조는 Jetpack Compose가 UI toolkit을 넘어서 **트리 기반 렌더링 시스템**이라는 본질을 보여줍니다. 다음 섹션인 “Managing DOM with Compose”도 이전에 다뤘고, 그 이후가 있다면 계속 정리해드릴게요!
-
-
 # Managing DOM with Compose 
-
-## 개요
 
 Jetpack Compose는 멀티플랫폼을 지원하지만, **runtime과 compiler만이 JVM 이외 환경에서 사용 가능**합니다. 이 두 모듈만으로도 구성이 가능하므로 다양한 실험이 가능합니다.
 
@@ -330,8 +313,6 @@ graph LR
   HTMLULElement --> HTMLLI2["HTMLLIElement - Text('Item 2')"]
   HTMLULElement --> HTMLLI3["HTMLLIElement - Text('Item 3')"]
 ```
-
-
 ## JS DOM 요소 다루기
 
 - **HTML 요소**: document.createElement("tag") → HTMLElement
@@ -366,10 +347,12 @@ fun Tag(tag: String, content: @Composable () -> Unit) {
 
 - Compose는 DOM 요소를 다룰 수 있는 Applier 구현이 필요함.
 - 내부 구현은 VectorApplier와 유사하지만, HTML의 DOM 메서드를 사용.
-    
-
-
 # HTML DOM을 Compose로 구현하기
+
+- Compose는 멀티플랫폼으로 확장되어 **HTML DOM 구조도 구성 가능**
+- 핵심은 Applier 구현과 ComposeNode를 통해 트리 구성
+- 구조상 React와 유사한 방식 (컴포저블 기반의 UI 트리 구성)
+
 ## HtmlApplier 구성
 
 Compose에서 DOM 요소들을 관리하려면 **Applier**가 필요합니다. VectorApplier와 구조는 유사하나, HTMLElement를 다루는 방식으로 설계됩니다.
@@ -398,9 +381,6 @@ classDiagram
 
     HTMLApplier --> HTMLElement
 ```
-
-
-
 
 ### 주요 코드 구성 요소
 
@@ -440,12 +420,6 @@ graph LR
 3. Text()는 ReusableComposeNode로 텍스트 노드 생성
 4. DOM 요소는 Compose가 추적 가능하도록 트리로 구성
 
-## 정리
-
-- Compose는 멀티플랫폼으로 확장되어 **HTML DOM 구조도 구성 가능**
-- 핵심은 Applier 구현과 ComposeNode를 통해 트리 구성
-- 구조상 React와 유사한 방식 (컴포저블 기반의 UI 트리 구성)
-    
 
 # Standalone Compose Runtime 만들기 – Kotlin/JS 기반
 
@@ -469,8 +443,6 @@ flowchart LR
     Composition --> Composables["Composable 함수"]
     Composables --> DOM["실제 DOM 요소 생성"]
 ```
-
-
 
 ## 구성 핵심 요소
 
@@ -531,8 +503,6 @@ graph LR
 - setContent나 자동 recomposition 없이 직접 Composition을 제어
 - Recomposer.runRecomposeAndApplyChanges()를 명시적으로 호출
 - 수동으로 invalidate → recompose → applyChanges 흐름 구성
-
-
 
 ## 주요 흐름 요약
 
@@ -598,9 +568,7 @@ graph LR
 - Composition, Recomposer, Applier만 있으면 Compose 실행 환경 구축 가능
 - 재컴포지션을 수동으로 트리거할 수 있어 브라우저에서 프레임 기반 애니메이션 등에 활용 가능
 
-# Compose DOM 구성 마무리
-
-## 핵심 요약
+# Compose DOM 구성
 
 - Compose는 UI 프레임워크가 아니라 **런타임 트리 구성 엔진**이다.
 - 실제로 UI 요소는 **Applier**에 의해 구체화되며, Compose 자체는 트리 구조를 구성하고 상태를 관리하는 역할을 한다.
@@ -641,13 +609,6 @@ graph LR
 - 실제 렌더링 (Applier가 담당)
 - 플랫폼 별 이벤트 처리
 - 쓰레딩 및 동시성 제어 (Coroutine으로 처리)
-    
-## 결론
-
-- Compose는 UI 도구가 아닌 **트리 기반 상태 동기화 엔진**이다.
-- HTML, Vector, Android, Canvas 등 무엇이든 트리로 구성된다면 Compose는 그것을 구성하고 관리할 수 있다.
-- Kotlin/JS에서도 Compose Runtime만으로 강력한 UI 프레임워크를 구현할 수 있다.
-- 더 나아가, Compose는 **범용 선언형 시스템**으로서의 잠재력을 지닌다.
     
 
 
