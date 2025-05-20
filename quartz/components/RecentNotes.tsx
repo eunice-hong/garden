@@ -42,9 +42,12 @@ export default ((userOpts?: Partial<Options>) => {
           {pages.slice(0, opts.limit).map((page) => {
             const title = page.frontmatter?.title ?? i18n(cfg.locale).propertyDefaults.title
             const tags = page.frontmatter?.tags ?? []
+            const langsRaw = page.frontmatter?.languages as string[] | string | undefined
+            const langsArr = langsRaw ? (Array.isArray(langsRaw) ? langsRaw : [langsRaw]) : ["ko"]
+            const dataLang = langsArr.join(",")
 
             return (
-              <li class="recent-li">
+              <li class="recent-li" data-lang={dataLang}>
                 <div class="section">
                   <div class="desc">
                     <h3>
