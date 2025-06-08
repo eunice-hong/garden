@@ -42,9 +42,16 @@ export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit, sort
       {list.map((page) => {
         const title = page.frontmatter?.title
         const tags = page.frontmatter?.tags ?? []
+        const langsRaw = page.frontmatter?.languages as string[] | string | undefined
+        const langsArr = langsRaw
+          ? Array.isArray(langsRaw)
+            ? langsRaw
+            : [langsRaw]
+          : ["ko"]
+        const dataLang = langsArr.join(",")
 
         return (
-          <li class="section-li">
+          <li class="section-li" data-lang={dataLang}>
             <div class="section">
               <p class="meta">
                 {page.dates && <Date date={getDate(cfg, page)!} locale={cfg.locale} />}
