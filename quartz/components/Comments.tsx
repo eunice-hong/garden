@@ -4,24 +4,27 @@ import { classNames } from "../util/lang"
 import script from "./scripts/comments.inline"
 
 type Options = {
-  provider: "giscus"
+  provider: "commentbox"
   options: {
-    repo: `${string}/${string}`
-    repoId: string
-    category: string
-    categoryId: string
-    themeUrl?: string
-    lightTheme?: string
-    darkTheme?: string
-    mapping?: "url" | "title" | "og:title" | "specific" | "number" | "pathname"
-    strict?: boolean
-    reactionsEnabled?: boolean
-    inputPosition?: "top" | "bottom"
+    projectId: string
+    className?: string
+    defaultBoxId?: string
+    tlcParam?: string
+    sortOrder?: "best" | "newest" | "oldest"
+    backgroundColor?: string
+    textColor?: string
+    subtextColor?: string
+    singleSignOn?: {
+      buttonText?: string
+      buttonIcon?: string
+      buttonColor?: string
+      autoSignOn?: boolean
+      onSignOn?: (onComplete: (token: string) => void, onError: (error: Error) => void) => void
+      onSignOut?: () => void
+    }
+    createBoxUrl?: (boxId: string, pageLocation: Location) => string
+    onCommentCount?: (count: number) => void
   }
-}
-
-function boolToStringBool(b: boolean): string {
-  return b ? "1" : "0"
 }
 
 export default ((opts: Options) => {
@@ -36,20 +39,14 @@ export default ((opts: Options) => {
 
     return (
       <div
-        class={classNames(displayClass, "giscus")}
-        data-repo={opts.options.repo}
-        data-repo-id={opts.options.repoId}
-        data-category={opts.options.category}
-        data-category-id={opts.options.categoryId}
-        data-mapping={opts.options.mapping ?? "url"}
-        data-strict={boolToStringBool(opts.options.strict ?? true)}
-        data-reactions-enabled={boolToStringBool(opts.options.reactionsEnabled ?? true)}
-        data-input-position={opts.options.inputPosition ?? "bottom"}
-        data-light-theme={opts.options.lightTheme ?? "light"}
-        data-dark-theme={opts.options.darkTheme ?? "dark"}
-        data-theme-url={
-          opts.options.themeUrl ?? `https://${cfg.baseUrl ?? "example.com"}/static/giscus`
-        }
+        class={classNames(displayClass, opts.options.className || "commentbox")}
+        id={opts.options.defaultBoxId || "commentbox"}
+        data-project-id={opts.options.projectId}
+        data-tlc-param={opts.options.tlcParam || "tlc"}
+        data-sort-order={opts.options.sortOrder || "best"}
+        data-background-color={opts.options.backgroundColor || ""}
+        data-text-color={opts.options.textColor || ""}
+        data-subtext-color={opts.options.subtextColor || ""}
       ></div>
     )
   }
