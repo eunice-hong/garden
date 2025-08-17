@@ -5,7 +5,15 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
-  afterBody: [],
+  afterBody: [
+    Component.Comments({
+      provider: 'commentbox',
+      options: {
+        projectId: '5755079336394752-proj', // Replace with your actual project ID from CommentBox.io Dashboard
+        sortOrder: 'best',
+      }
+    }),
+  ],
   footer: Component.Footer({
     links: {
       GitHub: "https://github.com/eunice-hong/garden",
@@ -21,18 +29,6 @@ export const defaultContentPageLayout: PageLayout = {
     Component.ArticleTitle(),
     Component.ContentMeta(),
     Component.MobileOnly(Component.TableOfContents()),
-  ],
-  afterBody: [
-    Component.Comments({
-      provider: 'giscus',
-      options: {
-        repo: 'eunice-hong/garden',
-        repoId: 'R_kgDOMDndhA',
-        category: 'Announcements',
-        categoryId: 'DIC_kwDOMDndhM4CiaiP',
-        reactionsEnabled: true,
-      }
-    }),
   ],
   left: [
     Component.PageTitle(),
