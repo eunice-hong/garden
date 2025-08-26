@@ -11,7 +11,7 @@ export const sharedPageComponents: SharedLayout = {
       options: {
         appId: '6943803d-c3b3-40f5-a01d-7819bdcf4147',
         host: 'https://cusdis.com',
-        lang: 'ko',
+        lang: 'en',
         theme: 'auto',
       }
     }),
