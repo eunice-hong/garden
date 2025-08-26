@@ -1,61 +1,79 @@
-const changeTheme = (e: CustomEventMap["themechange"]) => {
+const getCusdisThread = (): HTMLElement | null => {
+  return document.getElementById("cusdis_thread")
+}
+
+const applyCusdisTheme = (theme: string) => {
+  const container = getCusdisThread()
+  if (!container) return
+  const mapped = theme === "dark" ? "dark" : theme === "light" ? "light" : "auto"
+  container.setAttribute("data-theme", mapped)
+  // If the widget has been mounted, try to call setTheme if exposed
+  const w = window as any
+  if (w.CUSDIS && typeof w.CUSDIS.setTheme === "function") {
+    try {
+      w.CUSDIS.setTheme(mapped)
+    } catch {}
+  }
+}
+
+const onThemeChange = (e: CustomEventMap["themechange"]) => {
   const theme = e.detail.theme
-  const commentboxContainer = document.querySelector(".commentbox") as HTMLElement
-  if (!commentboxContainer) {
-    return
-  }
-
-  // CommentBox.io automatically adapts to the current theme
-  // No manual theme switching needed as it uses CSS variables
+  applyCusdisTheme(theme)
 }
 
-type CommentBoxElement = Omit<HTMLElement, "dataset"> & {
-  dataset: DOMStringMap & {
-    projectId: string
-    tlcParam: string
-    sortOrder: "best" | "newest" | "oldest"
-    backgroundColor: string
-    textColor: string
-    subtextColor: string
-  }
-}
-
-document.addEventListener("nav", () => {
-  const commentboxContainer = document.querySelector(".commentbox")
-  if (!commentboxContainer) {
-    return
-  }
-
-  // Load CommentBox.io script
-  const commentboxScript = document.createElement("script")
-  commentboxScript.src = "https://unpkg.com/commentbox.io/dist/commentBox.min.js"
-  commentboxScript.async = true
-  commentboxScript.crossOrigin = "anonymous"
-  commentboxScript.setAttribute("data-loading", "lazy")
-
-  // Initialize CommentBox with project ID
-  const projectId = commentboxContainer.dataset.projectId || "TODO"
-  
-  // Create options object for CommentBox
-  const options: any = {
-    className: 'commentbox',
-    defaultBoxId: commentboxContainer.id || 'commentbox',
-    tlcParam: commentboxContainer.dataset.tlcParam || 'tlc',
-    sortOrder: commentboxContainer.dataset.sortOrder || 'best',
-    backgroundColor: commentboxContainer.dataset.backgroundColor || null,
-    textColor: commentboxContainer.dataset.textColor || null,
-    subtextColor: commentboxContainer.dataset.subtextColor || null,
-  }
-
-  // Initialize CommentBox
-  commentboxScript.onload = () => {
-    if (typeof (window as any).commentBox === 'function') {
-      (window as any).commentBox(projectId, options)
+const ensureCusdisScripts = (): Promise<void> => {
+  return new Promise((resolve) => {
+    const existing = document.querySelector('script[data-cusdis="true"]') as HTMLScriptElement | null
+    if (existing) {
+      resolve()
+      return
     }
+
+    const host = (getCusdisThread()?.getAttribute("data-host") || "https://cusdis.com").replace(/\/$/, "")
+
+    const lang = document.createElement("script")
+    lang.src = `${host}/js/widget/lang/en.js`
+    lang.async = true
+    lang.setAttribute("data-cusdis", "true")
+
+    const es = document.createElement("script")
+    es.src = `${host}/js/cusdis.es.js`
+    es.type = "module"
+    es.async = true
+    es.setAttribute("data-cusdis", "true")
+
+    let loaded = 0
+    const done = () => {
+      loaded += 1
+      if (loaded >= 2) resolve()
+    }
+    lang.onload = done
+    es.onload = done
+
+    document.head.appendChild(lang)
+    document.head.appendChild(es)
+  })
+}
+
+const renderCusdis = () => {
+  const container = getCusdisThread()
+  if (!container) return
+  // For SPA rerenders, clear previous iframe if any so widget remounts
+  while (container.firstChild) container.removeChild(container.firstChild)
+  const w = window as any
+  if (w.CUSDIS && typeof w.CUSDIS.renderTo === "function") {
+    try {
+      w.CUSDIS.renderTo("#cusdis_thread")
+    } catch {}
   }
+}
 
-  document.head.appendChild(commentboxScript)
-
-  document.addEventListener("themechange", changeTheme)
-  window.addCleanup(() => document.removeEventListener("themechange", changeTheme))
+document.addEventListener("nav", async () => {
+  const container = getCusdisThread()
+  if (!container) return
+  await ensureCusdisScripts()
+  renderCusdis()
 })
+
+document.addEventListener("themechange", onThemeChange)
+window.addCleanup(() => document.removeEventListener("themechange", onThemeChange))

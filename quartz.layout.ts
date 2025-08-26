@@ -7,10 +7,12 @@ export const sharedPageComponents: SharedLayout = {
   header: [],
   afterBody: [
     Component.Comments({
-      provider: 'commentbox',
+      provider: 'cusdis',
       options: {
-        projectId: '5755079336394752-proj', // Replace with your actual project ID from CommentBox.io Dashboard
-        sortOrder: 'best',
+        appId: '6943803d-c3b3-40f5-a01d-7819bdcf4147',
+        host: 'https://cusdis.com',
+        lang: 'ko',
+        theme: 'auto',
       }
     }),
   ],
