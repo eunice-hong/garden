@@ -30,6 +30,9 @@ export default ((opts: Options) => {
         id={"cusdis_thread"}
         data-host={opts.options.host || "https://cusdis.com"}
         data-app-id={opts.options.appId}
+        data-page-id={fileData.slug}
+        data-page-url={typeof window !== "undefined" ? window.location.href : ""}
+        data-page-title={fileData.frontmatter?.title || ""}
         data-lang={opts.options.lang || "en"}
         data-theme={opts.options.theme || "auto"}
       ></div>
