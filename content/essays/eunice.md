@@ -1,11 +1,13 @@
 ---
 title: 닉네임을 'Eunice'로 부르는 이유
 description: 한국어 이름을 영어 이름 'Eunice'로 소개하게된 이유를 적어보았다.
+date: 2024-12-13 21:45
 draft: false
 aliases:
   - Eunice
   - eunice
 ---
+
 <img src="../images/korean_name_for_english_name.jpeg"  alt="Eunice를 한국어 이름으로 변환한 이미지" style="width: 100%; max-width: 200px; margin: 0 auto; display: block;">
 
 살면서 한국어 사용자가 아닌 사람에게 나를 소개할 일이 종종 있었다. 내 이름을 ‘은진’이라고 안내했을 때, 그들은 고개를 끄덕이지만 항상 나를 아래 이름 중 하나로 불렀다.
